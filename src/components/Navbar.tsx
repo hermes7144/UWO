@@ -14,12 +14,11 @@ export default function Navbar() {
         <h1>UWO Insight</h1>
       </Link>
       <nav className='flex items-center gap-4 font-semibold'>
-        {/* 
-        {user && user.isAdmin && (
+        {user?.isAdmin && (
           <Link to='/items/new'>
             <BsFillPencilFill />
           </Link>
-        )} */}
+        )}
 
         {user && <User user={user} />}
         {!user && <Button text={'Login'} onClick={login}></Button>}

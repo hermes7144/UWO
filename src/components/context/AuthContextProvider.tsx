@@ -4,7 +4,11 @@ import { onUserStateChange } from '../../api/firebase';
 import { AuthContext } from './AuthContext';
 import { User } from '@firebase/auth';
 
-export function AuthContextProvider({ children }: { children: React.ReactNode }) {
+type AuthContextProviderProps = {
+  children: React.ReactNode;
+};
+
+export function AuthContextProvider({ children }: AuthContextProviderProps) {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
