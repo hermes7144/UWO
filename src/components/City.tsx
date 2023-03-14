@@ -3,9 +3,16 @@ import { useQuery } from '@tanstack/react-query';
 import { getGoods } from '../api/firebase';
 import { BsFillTrashFill } from 'react-icons/bs';
 
-export default function City({ city, nextCity, index, onDelete }) {
+type CityProps = {
+  city: string;
+  nextCity: string;
+  index: number;
+  onDelete: (index: number) => void;
+};
+
+export default function City({ city, nextCity, index, onDelete }: CityProps) {
   const { data: goods } = useQuery(['goods', city], () => getGoods(city), { staleTime: Infinity, enabled: !!city });
-  const { data: nextGoods } = useQuery(['goods', nextCity], () => getGoods(nextCity), { staleTime: Infinity, enabled: !!city.nextCity });
+  const { data: nextGoods } = useQuery(['goods', nextCity], () => getGoods(nextCity), { staleTime: Infinity, enabled: !!nextCity });
 
   const nextItems = nextGoods && nextGoods.map((nextgood) => nextgood.goods_nm);
 
@@ -23,7 +30,7 @@ export default function City({ city, nextCity, index, onDelete }) {
           </th>
           {goods &&
             goods.map((good, index) => (
-              <td key={index} className={'w-24 border-solid border-2' + (good.specialty ? 'm-auto bg-yellow-200' : '')}>
+              <td key={index} className={'w-24 border-solid border-2 ' + (good.specialty ? 'bg-yellow-200' : '')}>
                 <div>
                   <img className='m-auto' src={good.goods_url} alt='' />
                 </div>

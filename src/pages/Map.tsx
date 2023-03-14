@@ -5,7 +5,7 @@ import { getCitys } from '../api/firebase';
 import City from '../components/City';
 
 export default function Map() {
-  const [citys, setCitys] = useState([]);
+  const [citys, setCitys] = useState<string[]>([]);
   const geoUrl = process.env.PUBLIC_URL + '/maps/land-50m.json';
   // const markers = [
   //   { city_lang: ['포르투갈어'], city_religion: '기독교', coordinates: [-9, 38.8] },
@@ -211,7 +211,7 @@ export default function Map() {
   // { city_id: 201, city_nm: '에조', city_lang: ['일본어'], city_religion: '불교' },
   // ];
 
-  function handleMarkerClick(id) {
+  function handleMarkerClick(id: string) {
     if (citys[citys.length - 1] !== id) {
       // 값이 없으면 배열에 추가
       setCitys([...citys, id]);
@@ -223,13 +223,13 @@ export default function Map() {
 
   const { data: markers } = useQuery(['citys'], getCitys);
 
-  const handleDelete = (delIndex) => setCitys(citys.filter((city, index) => index !== delIndex));
+  const handleDelete = (delIndex: number): void => setCitys(citys.filter((city, index) => index !== delIndex));
 
   return (
     <div>
       <ComposableMap projectionConfig={{ scale: 110 }} width={700} height={250}>
         <ZoomableGroup center={[15, 40]} zoom={7} minZoom={0}>
-          <Geographies geography={geoUrl}>{({ geographies }) => geographies.map((geo) => <Geography key={geo.rsmKey} geography={geo} fill='#D0AE89' onMouseEnter={null} onMouseLeave={null} />)}</Geographies>
+          <Geographies geography={geoUrl}>{({ geographies }) => geographies.map((geo) => <Geography key={geo.rsmKey} geography={geo} fill='#D0AE89' />)}</Geographies>
           {markers &&
             markers.map(({ city_id, goods_url, city_nm, city_coordinates, markerOffset }) => (
               <Marker className='cursor-pointer' key={city_id} coordinates={city_coordinates} onClick={() => handleMarkerClick(city_nm)}>
