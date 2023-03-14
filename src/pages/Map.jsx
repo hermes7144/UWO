@@ -6,9 +6,7 @@ import City from '../components/City';
 
 export default function Map() {
   const [citys, setCitys] = useState([]);
-  const [items2, setItems2] = useState([]);
   const geoUrl = process.env.PUBLIC_URL + '/maps/land-50m.json';
-  // const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
   // const markers = [
   //   { city_lang: ['포르투갈어'], city_religion: '기독교', coordinates: [-9, 38.8] },
   //   { city_lang: ['에스파냐어'], city_religion: '기독교', coordinates: [-5.8, 36.5] },
@@ -223,42 +221,35 @@ export default function Map() {
     }
   }
 
-  // city.city_nm === item.city_nm ? item : '';
-
-  function test() {
-    {
-      alert(citys);
-    }
-  }
-
   const { isLoading: isLoadingCitys, data: markers } = useQuery(['citys'], getCitys);
+
+  const handleDelete = (delIndex) => setCitys(citys.filter((city, index) => index !== delIndex));
 
   return (
     <div>
-      <button type='button' onClick={() => test()}>
-        submit
-      </button>
-      경로:{citys.map((city) => markers.map((marker) => (city === marker.city_nm ? marker.city_nm + '=>' : '')))}
-      <div>
-        {citys.map((city, index) => (
-          <City key={index} city={city} nextCity={citys[index + 1]} />
-        ))}
-      </div>
       <ComposableMap projectionConfig={{ scale: 110 }} width={700} height={250}>
-        <ZoomableGroup center={[15, 40]} zoom={7}>
+        <ZoomableGroup center={[15, 40]} zoom={7} minZoom={0}>
           <Geographies geography={geoUrl}>{({ geographies }) => geographies.map((geo) => <Geography key={geo.rsmKey} geography={geo} fill='#D0AE89' onMouseEnter={null} onMouseLeave={null} />)}</Geographies>
           {markers &&
-            markers.map(({ city_id, city_nm, city_coordinates, markerOffset }) => (
+            markers.map(({ city_id, goods_url, city_nm, city_coordinates, markerOffset }) => (
               <Marker className='cursor-pointer' key={city_id} coordinates={city_coordinates} onClick={() => handleMarkerClick(city_nm)}>
                 <circle r={0.55} fill='#F00' />
                 {/* stroke='#fff' strokeWidth={1} */}
                 <text textAnchor='middle' y={markerOffset ? markerOffset : 2} style={{ fontSize: 1, fontWeight: 'bold', fontFamily: 'system-ui', fill: citys.includes(city_nm) ? '#F00' : '#5D5A6D' }}>
                   {city_nm}
+                  <img src={goods_url} alt='' />
                 </text>
               </Marker>
             ))}
         </ZoomableGroup>
       </ComposableMap>
+      <div className='m-2'>
+        {citys.map((city, index) => (
+          <div className='flex'>
+            <City key={index} city={city} nextCity={citys[index + 1]} index={index} onDelete={handleDelete} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

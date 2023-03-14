@@ -58,7 +58,7 @@ export async function getCitys() {
 
 export async function getGoods(city) {
   if (!city) return;
-  const temp = query(ref(database, 'goods'), orderByChild('city_nm'), equalTo(city));
+  const temp = query(ref(database, 'goods'), orderByChild('goods_city'), equalTo(city));
   return get(temp)
     .then(snapshot => {
       if (snapshot.exists())
