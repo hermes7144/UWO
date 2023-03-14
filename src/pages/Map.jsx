@@ -221,7 +221,7 @@ export default function Map() {
     }
   }
 
-  const { isLoading: isLoadingCitys, data: markers } = useQuery(['citys'], getCitys);
+  const { data: markers } = useQuery(['citys'], getCitys);
 
   const handleDelete = (delIndex) => setCitys(citys.filter((city, index) => index !== delIndex));
 
