@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
 import City from '../City';
 import { fakeGoods } from '../../tests/fakeGoods';
 import { withAllContexts, withRouter } from '../../tests/utils';
@@ -16,9 +16,21 @@ describe('City', () => {
   const index = 1;
   const handleDelete = (delIndex: number): void => {};
 
+  it('renders correctly', async () => {
+    getGoods.mockImplementation(() => fakeGoods);
+
+    const { asFragment } = renderCitys();
+
+    await waitForElementToBeRemoved(screen.queryByText('Loading...'));
+    expect(asFragment()).toMatchSnapshot();
+  });
+
   it('render City items', async () => {
     getGoods.mockImplementation(() => fakeGoods);
     renderCitys();
+    await waitForElementToBeRemoved(screen.queryByText('Loading...'));
+
+    expect(screen.getByText('아몬드')).toHaveClass('text-red-600');
   });
 
   function renderCitys() {

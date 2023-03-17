@@ -1,0 +1,30 @@
+import React from 'react';
+import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { fakeCitys } from '../../tests/fakeGoods';
+import { withAllContexts, withRouter } from '../../tests/utils';
+import Map from '../../pages/Map';
+import { Route } from 'react-router-dom';
+
+describe('Map', () => {
+  const fakeFirebase = {
+    getCitys: jest.fn(),
+    getGoods: jest.fn(),
+  };
+
+  afterEach(() => {
+    fakeFirebase.getCitys.mockReset();
+  });
+
+  it('renders correctly', async () => {
+    fakeFirebase.getCitys.mockImplementation(() => fakeCitys);
+
+    const { asFragment } = renderMaps();
+
+    await waitForElementToBeRemoved(screen.queryByText('Loading...'));
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  function renderMaps() {
+    return render(withAllContexts(withRouter(<Route path='/' element={<Map />} />), fakeFirebase), { baseElement: document.body });
+  }
+});

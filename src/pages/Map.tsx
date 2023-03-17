@@ -222,8 +222,7 @@ export default function Map() {
     }
   }
 
-  const { data: markers } = useQuery(['citys'], getCitys);
-
+  const { data: cityDatas } = useQuery(['citys'], getCitys);
   const handleDelete = (delIndex: number): void => setCitys(citys.filter((city, index) => index !== delIndex));
 
   return (
@@ -232,8 +231,8 @@ export default function Map() {
         <ComposableMap projectionConfig={{ scale: 110 }} width={650} height={500}>
           <ZoomableGroup center={[15, 40]} zoom={7}>
             <Geographies geography={geoUrl}>{({ geographies }) => geographies.map((geo) => <Geography key={geo.rsmKey} geography={geo} fill='#D0AE89' />)}</Geographies>
-            {markers &&
-              markers.map(({ city_id, goods_url, city_nm, city_coordinates, markerOffset }) => (
+            {cityDatas &&
+              cityDatas.map(({ city_id, goods_url, city_nm, city_coordinates, markerOffset }) => (
                 <Marker className='cursor-pointer' key={city_id} coordinates={city_coordinates} onClick={() => handleMarkerClick(city_nm)}>
                   <circle r={0.55} fill='#F00' />
                   <text textAnchor='middle' y={markerOffset ? markerOffset : 2} style={{ fontSize: 1, fontWeight: 'bold', fontFamily: 'system-ui', fill: citys.includes(city_nm) ? '#F00' : '#5D5A6D' }}>
@@ -247,9 +246,9 @@ export default function Map() {
       </div>
       <div className='m-2 basis-2/6'>
         {citys.map((city, index) => (
-            <InfoContextProvider>
-              <City key={index} city={city} nextCity={citys[index + 1]} index={index} onDelete={handleDelete} />
-            </InfoContextProvider>
+          <InfoContextProvider>
+            <City key={index} city={city} nextCity={citys[index + 1]} index={index} onDelete={handleDelete} />
+          </InfoContextProvider>
         ))}
       </div>
     </div>
