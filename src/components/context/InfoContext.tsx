@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react';
 
 interface IInfoContext {
-  getGoods(city: string): Promise<any[]>;
+  getGoods(id: number): Promise<any[]>;
 }
 
 export const InfoContext = createContext<IInfoContext | null>(null);

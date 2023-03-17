@@ -1,11 +1,16 @@
 import { createContext, useContext } from 'react';
 import { User } from '@firebase/auth';
 
-type UserisAdmin = User & {
-  isAdmin?: boolean;
+type UserType = {
+  user: User & {
+    isAdmin?: boolean;
+  };
+  uid: string;
+  login: () => {};
+  logout: () => void;
 };
 
-export const AuthContext = createContext<UserisAdmin | null>(null);
+export const AuthContext = createContext<UserType | null>(null);
 
 export function useAuthContext() {
   return useContext(AuthContext);

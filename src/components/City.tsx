@@ -4,13 +4,14 @@ import { BsFillTrashFill } from 'react-icons/bs';
 import { useInfoContext } from './context/InfoContext';
 
 type CityProps = {
-  city: string;
-  nextCity: string;
+  city: number;
+  nextCity: number;
   index: number;
+  cityNm: string;
   onDelete: (index: number) => void;
 };
 
-export default function City({ city, nextCity, index, onDelete }: CityProps) {
+export default function City({ city, nextCity, index, cityNm, onDelete }: CityProps) {
   const { getGoods } = useInfoContext();
 
   const { isLoading, data: goods } = useQuery(['goods', city], () => getGoods(city), { staleTime: Infinity, enabled: !!city });
@@ -32,14 +33,13 @@ export default function City({ city, nextCity, index, onDelete }: CityProps) {
             </th>
             <th rowSpan={2}>
               <div className='flex justify-center items-center w-24'>
-                {city}
-                <br />
+                {cityNm}
                 <BsFillTrashFill className='cursor-pointer opacity-50 hover:opacity-100' onClick={handleDelete} />
               </div>
             </th>
             {goods &&
               goods.map((good, index) => (
-                <td key={index} className={'border-solid border-2 w-30' + (good.specialty ? 'bg-yellow-200' : '')}>
+                <td key={index} className={'border-solid border-2 w-30 ' + (good.specialty ? 'bg-yellow-200' : '')}>
                   <img className='m-auto' src={good.goods_url} alt='' />
                 </td>
               ))}

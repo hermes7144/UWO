@@ -6,7 +6,7 @@ import { useAuthContext } from './context/AuthContext';
 import { login, logout } from '../api/firebase';
 
 export default function Navbar() {
-  const user = useAuthContext();
+  const { user } = useAuthContext();
 
   return (
     <header className='flex justify-between border-b border-gray-300 p-2'>

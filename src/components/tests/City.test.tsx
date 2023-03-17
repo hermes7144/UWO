@@ -11,9 +11,10 @@ describe('City', () => {
     getGoods.mockReset();
   });
 
-  const city = '리스보아';
-  const nextCity = '세비야';
+  const city = 1;
+  const nextCity = 2;
   const index = 1;
+  const cityNm = '리브보아';
   const handleDelete = (delIndex: number): void => {};
 
   it('renders correctly', async () => {
@@ -34,6 +35,6 @@ describe('City', () => {
   });
 
   function renderCitys() {
-    return render(withAllContexts(withRouter(<Route path='/' element={<City city={city} nextCity={nextCity} index={index} onDelete={handleDelete} />} />), getGoods));
+    return render(withAllContexts(withRouter(<Route path='/' element={<City city={city} nextCity={nextCity} cityNm={cityNm} index={index} onDelete={handleDelete} />} />), getGoods));
   }
 });

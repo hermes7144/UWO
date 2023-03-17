@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
+import { v4 as uuid } from 'uuid'
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
-import { getDatabase, ref, get, query, orderByChild, equalTo } from "firebase/database";
+import { getDatabase, ref, get, query, orderByChild, equalTo, set } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -58,7 +59,7 @@ export async function getCitys() {
 
 export async function getGoods(city) {
   if (!city) return;
-  const temp = query(ref(database, 'goods'), orderByChild('goods_city'), equalTo(city));
+  const temp = query(ref(database, 'goods'), orderByChild('city_id'), equalTo(city));
   return get(temp)
     .then(snapshot => {
       if (snapshot.exists())
