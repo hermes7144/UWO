@@ -1,5 +1,4 @@
 import { useMutation, UseMutationResult, useQueryClient } from '@tanstack/react-query';
-import { useBeforeUnload } from 'react-router-dom';
 import { addOrUpdateRoute, removeRoute } from '../api/firebaseTest';
 import { useAuthContext } from '../components/context/AuthContext';
 

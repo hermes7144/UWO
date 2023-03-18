@@ -2,7 +2,6 @@ import React from 'react';
 import useRoute from '../Hooks/useRoute';
 import { useInfoContext } from './context/InfoContext';
 import { BsFillTrashFill } from 'react-icons/bs';
-import Button from './ui/Button';
 
 type RouteType = {
   route: {
