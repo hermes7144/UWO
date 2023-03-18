@@ -5,7 +5,7 @@ type UserType = {
   user: User & {
     isAdmin?: boolean;
   };
-  uid: string;
+  uid?: string;
   login: () => {};
   logout: () => void;
 };

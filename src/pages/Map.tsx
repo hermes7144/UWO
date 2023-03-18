@@ -3,12 +3,15 @@ import React, { useState } from 'react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup, Marker } from 'react-simple-maps';
 import { getCitys } from '../api/firebase';
 import City from '../components/City';
+import { useAuthContext } from '../components/context/AuthContext';
+import Routes from '../components/Routes';
 import Button from '../components/ui/Button';
 import useRoute from '../Hooks/useRoute';
+const geoUrl = process.env.PUBLIC_URL + '/maps/land-50m.json';
 
 export default function Map() {
-  const geoUrl = process.env.PUBLIC_URL + '/maps/land-50m.json';
   const [citys, setCitys] = useState<number[]>([]);
+  const { user } = useAuthContext();
 
   const { addOrUpdateItem } = useRoute();
 
@@ -29,6 +32,7 @@ export default function Map() {
   const handleInsert = () => {
     const routeNm = prompt('교역 루트명 입력해주세요.');
     addOrUpdateItem.mutate({ routeNm, citys });
+    setCitys([]);
   };
   return (
     <div className='flex'>
@@ -49,8 +53,11 @@ export default function Map() {
         </ComposableMap>
       </div>
       <div className='m-2 basis-2/6'>
-        <Button text={'Reset'} onClick={handleReset}></Button>
-        <Button text={'Save'} onClick={handleInsert}></Button>
+        {user && <Routes />}
+        <div className='flex justify-between mt-2'>
+          <Button text={'Reset'} onClick={handleReset}></Button>
+          <Button text={'Save'} onClick={handleInsert}></Button>
+        </div>
         {citys.map((city, index) => (
           <City key={index} city={city} cityNm={cityDatas[city - 1].city_nm} nextCity={citys[index + 1]} index={index} onDelete={handleDelete} />
         ))}

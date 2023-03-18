@@ -47,25 +47,11 @@ async function adminUser(user) {
 }
 
 export async function getCitys() {
-  return get(ref(database, 'citys'))
-    .then(snapshot => {
-      if (snapshot.exists())
-      {
-        return Object.values(snapshot.val());
-      }
-      return [];
-    })
+  return get(ref(database, 'citys')).then(snapshot =>
+    snapshot.exists() ? Object.values(snapshot.val()) : [])
 }
 
 export async function getGoods(city) {
-  if (!city) return;
-  const temp = query(ref(database, 'goods'), orderByChild('city_id'), equalTo(city));
-  return get(temp)
-    .then(snapshot => {
-      if (snapshot.exists())
-      {
-        return Object.values(snapshot.val());
-      }
-      return [];
-    })
+  return get(query(ref(database, 'goods'), orderByChild('city_id'), equalTo(city)))
+    .then(snapshot => snapshot.exists() ? Object.values(snapshot.val()) : [])
 }

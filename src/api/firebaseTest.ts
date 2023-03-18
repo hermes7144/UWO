@@ -1,7 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { v4 as uuid } from 'uuid';
-import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from 'firebase/auth';
-import { getDatabase, ref, get, query, orderByChild, equalTo, set } from 'firebase/database';
+import { getDatabase, ref, get, set } from 'firebase/database';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -11,8 +10,6 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth();
-const provider = new GoogleAuthProvider();
 const database = getDatabase(app);
 
 type RouteType = {
@@ -24,4 +21,8 @@ export async function addOrUpdateRoute(userId: string, routeNm: string, city: nu
   const id = uuid();
   set(ref(database, `routes/${userId}/${id}`), { id, routeNm, city });
   return null;
+}
+
+export async function getRoutes(userId: string): Promise<object[]> {
+  return get(ref(database, `routes/${userId}`)).then((snapshot) => (snapshot.exists() ? Object.values(snapshot.val()) : []));
 }
