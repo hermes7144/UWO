@@ -19,8 +19,7 @@ exports[`City renders correctly 1`] = `
           <div
             class="flex justify-center items-center w-24"
           >
-            리스보아
-            <br />
+            리브보아
             <svg
               class="cursor-pointer opacity-50 hover:opacity-100"
               fill="currentColor"
@@ -38,7 +37,7 @@ exports[`City renders correctly 1`] = `
           </div>
         </th>
         <td
-          class="border-solid border-2 w-30"
+          class="border-solid border-2 w-30 "
         >
           <img
             alt=""
@@ -47,7 +46,7 @@ exports[`City renders correctly 1`] = `
           />
         </td>
         <td
-          class="border-solid border-2 w-30bg-yellow-200"
+          class="border-solid border-2 w-30 bg-yellow-200"
         >
           <img
             alt=""
