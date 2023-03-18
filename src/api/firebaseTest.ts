@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { v4 as uuid } from 'uuid';
-import { getDatabase, ref, get, set, onChildChanged, remove } from 'firebase/database';
+import { getDatabase, ref, get, set, remove } from 'firebase/database';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
