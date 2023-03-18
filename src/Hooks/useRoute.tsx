@@ -1,20 +1,36 @@
 import { useMutation, UseMutationResult, useQueryClient } from '@tanstack/react-query';
-import { addOrUpdateRoute } from '../api/firebaseTest';
+import { useBeforeUnload } from 'react-router-dom';
+import { addOrUpdateRoute, removeRoute } from '../api/firebaseTest';
 import { useAuthContext } from '../components/context/AuthContext';
 
 export default function useRoute() {
   const { uid } = useAuthContext();
   const queryClient = useQueryClient();
   type RouteType = {
-    routeNm: string;
+    id?: string;
+    route: {
+      id: string;
+      title: string;
+      description?: string;
+    };
     citys: number[];
   };
 
-  const addOrUpdateItem: UseMutationResult<RouteType> = useMutation(({ routeNm, citys }) => addOrUpdateRoute(uid, routeNm, citys), {
+  type RemoveType = {
+    id: string;
+  };
+
+  const addOrUpdateItem: UseMutationResult<RouteType> = useMutation(({ route, citys }) => addOrUpdateRoute(uid, route, citys), {
     onSuccess: () => {
       queryClient.invalidateQueries(['routes', uid]);
     },
   });
 
-  return { addOrUpdateItem };
+  const removeItem: UseMutationResult<RemoveType> = useMutation(({ id }) => removeRoute(uid, id), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['routes', uid]);
+    },
+  });
+
+  return { addOrUpdateItem, removeItem };
 }

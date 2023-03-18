@@ -1,19 +1,18 @@
-import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { ComposableMap, Geographies, Geography, ZoomableGroup, Marker } from 'react-simple-maps';
 import { getCitys } from '../api/firebase';
 import City from '../components/City';
 import { useAuthContext } from '../components/context/AuthContext';
+import { useInfoContext } from '../components/context/InfoContext';
 import Routes from '../components/Routes';
 import Button from '../components/ui/Button';
-import useRoute from '../Hooks/useRoute';
+import RouteForm from '../components/RouteForm';
 const geoUrl = process.env.PUBLIC_URL + '/maps/land-50m.json';
 
 export default function Map() {
-  const [citys, setCitys] = useState<number[]>([]);
+  const { citys, setCitys, setRoute } = useInfoContext();
   const { user } = useAuthContext();
-
-  const { addOrUpdateItem } = useRoute();
 
   function handleMarkerClick(id: number) {
     if (citys[citys.length - 1] !== id) {
@@ -27,13 +26,11 @@ export default function Map() {
 
   const { data: cityDatas } = useQuery(['citys'], getCitys);
   const handleDelete = (delIndex: number): void => setCitys(citys.filter((city, index) => index !== delIndex));
-  const handleReset = () => setCitys([]);
-
-  const handleInsert = () => {
-    const routeNm = prompt('교역 루트명 입력해주세요.');
-    addOrUpdateItem.mutate({ routeNm, citys });
+  const handleReset = () => {
     setCitys([]);
+    setRoute({ id: '', title: '', remark: '' });
   };
+
   return (
     <div className='flex'>
       <div className='basis-4/6'>
@@ -53,14 +50,15 @@ export default function Map() {
         </ComposableMap>
       </div>
       <div className='m-2 basis-2/6'>
-        {user && <Routes />}
         <div className='flex justify-between mt-2'>
           <Button text={'Reset'} onClick={handleReset}></Button>
-          <Button text={'Save'} onClick={handleInsert}></Button>
         </div>
+        {user && <Routes />}
+
         {citys.map((city, index) => (
           <City key={index} city={city} cityNm={cityDatas[city - 1].city_nm} nextCity={citys[index + 1]} index={index} onDelete={handleDelete} />
         ))}
+        {user && <RouteForm />}
       </div>
     </div>
   );

@@ -1,6 +1,11 @@
 import React from 'react';
 
-export default function Button({ text, onClick }) {
+type ButtonType = {
+  text: string;
+  onClick?: () => void;
+};
+
+export default function Button({ text, onClick }: ButtonType) {
   return (
     <button
       className='bg-brand text-white
