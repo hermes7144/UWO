@@ -22,7 +22,7 @@ export default function City({ city, nextCity, index, cityNm, onDelete }: CityPr
   const handleDelete = () => onDelete(index);
 
   return (
-    <>
+    <section>
       {isLoading && <p>Loading...</p>}
       <table className='border-solid border-2 mt-2'>
         <tbody>
@@ -32,7 +32,7 @@ export default function City({ city, nextCity, index, cityNm, onDelete }: CityPr
             </th>
             <th rowSpan={2}>
               <div className='flex justify-center items-center w-24'>
-                {cityNm}
+                <span>{cityNm}</span>
                 <BsFillTrashFill className='cursor-pointer opacity-50 hover:opacity-100' onClick={handleDelete} />
               </div>
             </th>
@@ -53,6 +53,6 @@ export default function City({ city, nextCity, index, cityNm, onDelete }: CityPr
           </tr>
         </tbody>
       </table>
-    </>
+    </section>
   );
 }

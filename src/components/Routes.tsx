@@ -15,11 +15,11 @@ export default function Routes() {
   const { user } = useAuthContext();
   const { isLoading, error, data: routes } = useQuery(['routes', user.uid], () => getRoutes(user.uid), { enabled: !!user });
   return (
-    <>
+    <section className='mt-2'>
       {isLoading && <p>Loading...</p>}
       {error && <p>Error</p>}
-      등록한 무역 루트
-      <ul>{routes && routes.map((route: RouteType) => <RouteCard key={route.id} route={route} />)}</ul>
-    </>
+      <p className='text-xl'>등록한 무역 루트</p>
+      <ul>{routes && routes.map((route: RouteType) => <RouteCard key={route.id} routeProps={route} />)}</ul>
+    </section>
   );
 }

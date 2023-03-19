@@ -4,7 +4,7 @@ import { useInfoContext } from './context/InfoContext';
 import { BsFillTrashFill } from 'react-icons/bs';
 
 type RouteType = {
-  route: {
+  routeProps: {
     id: string;
     title: string;
     remark: string;
@@ -12,17 +12,17 @@ type RouteType = {
   };
 };
 
-export default function RouteCard({ route }: RouteType) {
-  const { setCitys, setRoute } = useInfoContext();
+export default function RouteCard({ routeProps }: RouteType) {
+  const { setCitys, route, setRoute } = useInfoContext();
   const { removeItem } = useRoute();
 
   const handleRoute = () => {
-    setCitys(route.citys);
-    setRoute(route);
+    setCitys(routeProps.citys);
+    setRoute(routeProps);
   };
 
   const handleDelete = () => {
-    const id = route.id;
+    const id = routeProps.id;
     removeItem.mutate(
       { id },
       {
@@ -35,9 +35,9 @@ export default function RouteCard({ route }: RouteType) {
   };
 
   return (
-    <li className='round-lg shadow-md overflow-hidden cursor-pointer' onClick={handleRoute}>
+    <li className={'round-lg shadow-md overflow-hidden cursor-pointer p-2 m-1 ' + (routeProps.id === route.id ? 'bg-red-100' : '')} onClick={handleRoute}>
       <div className='mt-2 px-2 flex flex-row items-center justify-between'>
-        <h3>{route.title}</h3>
+        <h3>{routeProps.title}</h3>
         <BsFillTrashFill className='cursor-pointer opacity-50 hover:opacity-100' onClick={handleDelete} />
       </div>
     </li>

@@ -32,9 +32,9 @@ export default function Map() {
   };
 
   return (
-    <div className='flex flex-col sm:flex-row'>
-      <div className='basis-4/6 m-2'>
-        <ComposableMap projectionConfig={{ scale: 110 }} width={650} height={500} className='bg-blue-100'>
+    <div className='flex flex-col md:flex-row'>
+      <div className='basis-4/6'>
+        <ComposableMap projectionConfig={{ scale: 110 }} width={650} height={445} className='bg-blue-100'>
           <ZoomableGroup center={[15, 40]} zoom={7} minZoom={1}>
             <Geographies geography={geoUrl}>{({ geographies }) => geographies.map((geo) => <Geography key={geo.rsmKey} geography={geo} fill='#D0AE89' />)}</Geographies>
             {cityDatas &&
@@ -49,16 +49,15 @@ export default function Map() {
           </ZoomableGroup>
         </ComposableMap>
       </div>
-      <div className='m-2 basis-2/6'>
-        <div className='flex justify-between mt-2'>
-          <Button text={'Reset'} onClick={handleReset}></Button>
-        </div>
+      <div className='w-full basis-2/6 flex flex-col p-4'>
+        <Button text={'Reset'} onClick={handleReset}></Button>
+
         {user && <Routes />}
 
         {citys.map((city, index) => (
           <City key={index} city={city} cityNm={cityDatas[city - 1].city_nm} nextCity={citys[index + 1]} index={index} onDelete={handleDelete} />
         ))}
-        {user && <RouteForm />}
+        {user && citys.length > 0 && <RouteForm />}
       </div>
     </div>
   );
