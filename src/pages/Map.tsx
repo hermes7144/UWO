@@ -50,7 +50,8 @@ export default function Map() {
         </ComposableMap>
       </div>
       <div className='w-full basis-2/6 flex flex-col p-4'>
-        <Button text={'Reset'} onClick={handleReset}></Button>
+        <h2>무역 루트</h2>
+        {citys.length > 0 && <Button text={'Reset'} onClick={handleReset}></Button>}
 
         {user && <Routes />}
 

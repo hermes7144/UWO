@@ -18,7 +18,6 @@ export default function Routes() {
     <section className='mt-2'>
       {isLoading && <p>Loading...</p>}
       {error && <p>Error</p>}
-      <p className='text-xl'>등록한 무역 루트</p>
       <ul>{routes && routes.map((route: RouteType) => <RouteCard key={route.id} routeProps={route} />)}</ul>
     </section>
   );
