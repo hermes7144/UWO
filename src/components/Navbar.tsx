@@ -11,7 +11,7 @@ export default function Navbar() {
   return (
     <header className='flex justify-between border-b border-gray-300 p-2'>
       <Link to='/' className='flex items-center text-4xl text-brand'>
-        <h1>UWOInsight</h1>
+        <h1>UWT</h1>
       </Link>
       <nav className='flex items-center gap-4 font-semibold'>
         {user?.isAdmin && (

@@ -19,13 +19,13 @@ export default function useRoute() {
     id: string;
   };
 
-  const addOrUpdateItem: UseMutationResult<RouteType> = useMutation(({ route, citys }) => addOrUpdateRoute(uid, route, citys), {
+  const addOrUpdateItem: UseMutationResult<RouteType> = useMutation(({ route, citys }: RouteType) => addOrUpdateRoute(uid, route, citys), {
     onSuccess: () => {
       queryClient.invalidateQueries(['routes', uid]);
     },
   });
 
-  const removeItem: UseMutationResult<RemoveType> = useMutation(({ id }) => removeRoute(uid, id), {
+  const removeItem: UseMutationResult<RemoveType> = useMutation(({ id }: RemoveType) => removeRoute(uid, id), {
     onSuccess: () => {
       queryClient.invalidateQueries(['routes', uid]);
     },

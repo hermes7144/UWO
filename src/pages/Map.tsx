@@ -32,10 +32,10 @@ export default function Map() {
   };
 
   return (
-    <div className='flex'>
-      <div className='basis-4/6'>
-        <ComposableMap projectionConfig={{ scale: 110 }} width={650} height={500}>
-          <ZoomableGroup center={[15, 40]} zoom={7}>
+    <div className='flex flex-col sm:flex-row'>
+      <div className='basis-4/6 m-2'>
+        <ComposableMap projectionConfig={{ scale: 110 }} width={650} height={500} className='bg-blue-100'>
+          <ZoomableGroup center={[15, 40]} zoom={7} minZoom={1}>
             <Geographies geography={geoUrl}>{({ geographies }) => geographies.map((geo) => <Geography key={geo.rsmKey} geography={geo} fill='#D0AE89' />)}</Geographies>
             {cityDatas &&
               cityDatas.map(({ city_id, city_nm, city_coordinates, markerOffset }) => (
