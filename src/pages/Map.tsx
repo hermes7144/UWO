@@ -3,18 +3,15 @@ import { useQuery } from '@tanstack/react-query';
 import { ComposableMap, Geographies, Geography, ZoomableGroup, Marker } from 'react-simple-maps';
 import { getCitys } from '../api/firebase';
 import City from '../components/City';
-import { useAuthContext } from '../components/context/AuthContext';
 import { useInfoContext } from '../components/context/InfoContext';
 import RouteForm from '../components/RouteForm';
 import Button from '../components/ui/Button';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { BsFillTrashFill } from 'react-icons/bs';
 import useRoute from '../Hooks/useRoute';
 const geoUrl = process.env.PUBLIC_URL + '/maps/land-50m.json';
 
 export default function Map() {
   const { citys, setCitys, setRoute } = useInfoContext();
-  const { user } = useAuthContext();
   const { removeItem } = useRoute();
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -51,7 +48,7 @@ export default function Map() {
   return (
     <div className='flex flex-col md:flex-row'>
       <div className='basis-4/6'>
-        <ComposableMap projectionConfig={{ scale: 110 }} width={650} height={445} className='bg-blue-400'>
+        <ComposableMap projectionConfig={{ scale: 110 }} width={650} height={445} className='bg-blue-300'>
           <ZoomableGroup center={[15, 40]} zoom={7} minZoom={1}>
             <Geographies geography={geoUrl}>{({ geographies }) => geographies.map((geo) => <Geography key={geo.rsmKey} geography={geo} fill='#D0AE89' />)}</Geographies>
             {cityDatas &&
