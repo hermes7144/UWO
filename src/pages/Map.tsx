@@ -6,8 +6,8 @@ import City from '../components/City';
 import { useAuthContext } from '../components/context/AuthContext';
 import { useInfoContext } from '../components/context/InfoContext';
 import Routes from '../components/Routes';
-import Button from '../components/ui/Button';
 import RouteForm from '../components/RouteForm';
+import Button from '../components/ui/Button';
 const geoUrl = process.env.PUBLIC_URL + '/maps/land-50m.json';
 
 export default function Map() {
@@ -34,7 +34,7 @@ export default function Map() {
   return (
     <div className='flex flex-col md:flex-row'>
       <div className='basis-4/6'>
-        <ComposableMap projectionConfig={{ scale: 110 }} width={650} height={445} className='bg-blue-100'>
+        <ComposableMap projectionConfig={{ scale: 110 }} width={650} height={445} className='bg-blue-400'>
           <ZoomableGroup center={[15, 40]} zoom={7} minZoom={1}>
             <Geographies geography={geoUrl}>{({ geographies }) => geographies.map((geo) => <Geography key={geo.rsmKey} geography={geo} fill='#D0AE89' />)}</Geographies>
             {cityDatas &&

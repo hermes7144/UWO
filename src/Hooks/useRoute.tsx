@@ -25,7 +25,7 @@ export default function useRoute() {
     },
   });
 
-  const removeItem: UseMutationResult<RemoveType> = useMutation(({ id }: RemoveType) => removeRoute(uid, id), {
+  const removeItem: UseMutationResult<RemoveType> = useMutation(({ id }: RemoveType) => removeRoute(id), {
     onSuccess: () => {
       queryClient.invalidateQueries(['routes', uid]);
     },

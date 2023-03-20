@@ -14,11 +14,9 @@ export default function Navbar() {
         <h1>UWT</h1>
       </Link>
       <nav className='flex items-center gap-4 font-semibold'>
-        {user?.isAdmin && (
-          <Link to='/items/new'>
-            <BsFillPencilFill />
-          </Link>
-        )}
+        <Link to='/routes'>
+          <h2>무역 루트</h2>
+        </Link>
 
         {user && <User user={user} />}
         {!user && <Button text={'Login'} onClick={login}></Button>}

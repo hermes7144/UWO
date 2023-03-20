@@ -1,8 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { getUserRoutes } from '../api/firebaseTest';
-import RouteCard from './RouteCard';
-import { useAuthContext } from './context/AuthContext';
+import { getRoutes } from '../api/firebaseTest';
+import RouteCard from '../components/RouteCard';
 
 type RouteType = {
   id: string;
@@ -12,8 +11,8 @@ type RouteType = {
 };
 
 export default function Routes() {
-  const { user } = useAuthContext();
-  const { isLoading, error, data: routes } = useQuery(['routes', user.uid], () => getUserRoutes(user.uid), { enabled: !!user });
+  const { isLoading, error, data: routes } = useQuery(['routes'], getRoutes);
+
   return (
     <section className='mt-2'>
       {isLoading && <p>Loading...</p>}

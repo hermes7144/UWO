@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { v4 as uuid } from 'uuid';
-import { getDatabase, ref, get, set, remove } from 'firebase/database';
+import { getDatabase, ref, get, set, remove, query, orderByChild, equalTo } from 'firebase/database';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -21,8 +21,14 @@ type RouteType = {
   citys: number[];
 };
 
-export async function getRoutes(userId: string): Promise<object[]> {
-  return get(ref(database, `routes/${userId}`)).then((snapshot) => (snapshot.exists() ? Object.values(snapshot.val()) : []));
+export async function getRoutes(): Promise<object[]> {
+  console.log('test');
+
+  return get(ref(database, 'routes')).then((snapshot) => (snapshot.exists() ? Object.values(snapshot.val()) : []));
+}
+
+export async function getUserRoutes(userId: string): Promise<object[]> {
+  return get(query(ref(database, 'routes'), orderByChild('user_id'), equalTo(userId))).then((snapshot) => (snapshot.exists() ? Object.values(snapshot.val()) : []));
 }
 
 export async function addOrUpdateRoute(
@@ -36,13 +42,12 @@ export async function addOrUpdateRoute(
 ): Promise<RouteType> {
   const id = route.id ? route.id : uuid();
 
-  set(ref(database, `routes/${userId}/${id}`), { ...route, id });
-  set(ref(database, `routes/${userId}/${id}/citys`), { ...citys });
+  set(ref(database, `routes/${id}`), { ...route, user_id: userId, id });
+  set(ref(database, `routes/${id}/citys`), { ...citys });
   return null;
 }
 
-export async function removeRoute(userId: string, id: string) {
-  console.log('삭제', id);
-  remove(ref(database, `routes/${userId}/${id}`));
+export async function removeRoute(id: string) {
+  remove(ref(database, `routes/${id}`));
   return null;
 }
