@@ -1,6 +1,6 @@
 import React from 'react';
-import Map from './Map';
+import Route from './Route';
 
 export default function RouteDetail() {
-  return <Map />;
+  return <Route />;
 }

@@ -17,9 +17,10 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { index: true, path: '/', element: <Home /> },
+      { path: '/routes/update/:id', element: <RouteNew /> },
       { path: '/routes', element: <AllRoutes /> },
-      { path: '/routes/new', element: <RouteNew /> },
       { path: '/routes/:id', element: <RouteDetail /> },
+      { path: '/routes/new', element: <RouteNew /> },
     ],
   },
 ]);

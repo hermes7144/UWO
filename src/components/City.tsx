@@ -13,7 +13,6 @@ type CityProps = {
 
 export default function City({ city, nextCity, index, cityNm, onDelete }: CityProps) {
   const { getGoods } = useInfoContext();
-
   const { isLoading, data: goods } = useQuery(['goods', city], () => getGoods(city), { staleTime: Infinity });
   const { data: nextGoods } = useQuery(['goods', nextCity], () => getGoods(nextCity), { staleTime: Infinity, enabled: !!nextCity });
 

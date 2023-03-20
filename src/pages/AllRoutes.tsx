@@ -1,10 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { getRoutes } from '../api/firebaseTest';
 import RouteCard from '../components/RouteCard';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/ui/Button';
-import { useInfoContext } from '../components/context/InfoContext';
 
 type RouteType = {
   id: string;
@@ -14,14 +13,11 @@ type RouteType = {
 };
 
 export default function AllRoutes() {
-  const navigate = useNavigate();
   const { isLoading, error, data: routes } = useQuery(['routes'], getRoutes);
-  const { setCitys, setRoute } = useInfoContext();
+  const navigate = useNavigate();
 
   const handleClick = () => {
     navigate('/routes/new');
-    setCitys([]);
-    setRoute({ id: '', title: '', remark: '' });
   };
   return (
     <section>
