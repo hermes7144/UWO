@@ -1,10 +1,6 @@
 import React from 'react';
-import Map from './Map';
+import AllRoutes from './AllRoutes';
 
 export default function Home() {
-  return (
-    <div>
-      Home
-    </div>
-  );
+  return <AllRoutes />;
 }
