@@ -1,10 +1,12 @@
 import { useInfoContext } from './context/InfoContext';
 import useRoute from '../Hooks/useRoute';
 import Button from './ui/Button';
+import { useNavigate } from 'react-router-dom';
 
 export default function RouteForm() {
-  const { citys, setCitys, route, setRoute } = useInfoContext();
+  const navigate = useNavigate();
   const { addOrUpdateItem } = useRoute();
+  const { citys, setCitys, route, setRoute } = useInfoContext();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,6 +20,7 @@ export default function RouteForm() {
       { route, citys },
       {
         onSuccess: () => {
+          navigate('/routes');
           setCitys([]);
           setRoute({ id: '', title: '', remark: '' });
         },

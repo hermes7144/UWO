@@ -5,14 +5,19 @@ import { getCitys } from '../api/firebase';
 import City from '../components/City';
 import { useAuthContext } from '../components/context/AuthContext';
 import { useInfoContext } from '../components/context/InfoContext';
-import Routes from '../components/Routes';
 import RouteForm from '../components/RouteForm';
 import Button from '../components/ui/Button';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { BsFillTrashFill } from 'react-icons/bs';
+import useRoute from '../Hooks/useRoute';
 const geoUrl = process.env.PUBLIC_URL + '/maps/land-50m.json';
 
 export default function Map() {
   const { citys, setCitys, setRoute } = useInfoContext();
   const { user } = useAuthContext();
+  const { removeItem } = useRoute();
+  const navigate = useNavigate();
+  const { state } = useLocation();
 
   function handleMarkerClick(id: number) {
     if (citys[citys.length - 1] !== id) {
@@ -26,9 +31,21 @@ export default function Map() {
 
   const { data: cityDatas } = useQuery(['citys'], getCitys);
   const handleDelete = (delIndex: number): void => setCitys(citys.filter((city, index) => index !== delIndex));
-  const handleReset = () => {
-    setCitys([]);
-    setRoute({ id: '', title: '', remark: '' });
+
+  const handleDelete2 = () => {
+    if (!window.confirm('삭제하시겠습니까?')) return false;
+
+    const id = state.route.id;
+    removeItem.mutate(
+      { id },
+      {
+        onSuccess: () => {
+          navigate('/routes');
+          setCitys([]);
+          setRoute({ id: '', title: '', remark: '' });
+        },
+      }
+    );
   };
 
   return (
@@ -51,14 +68,15 @@ export default function Map() {
       </div>
       <div className='w-full basis-2/6 flex flex-col p-4'>
         <h2>무역 루트</h2>
-        {citys.length > 0 && <Button text={'Reset'} onClick={handleReset}></Button>}
+        {/* <div>{<Button text={'목록'} onClick={handleReset}></Button>}</div> */}
+        {/* {user && <Routes />} */}
 
-        {user && <Routes />}
+        {state && <Button text={'삭제'} onClick={handleDelete2} />}
 
+        <RouteForm />
         {citys.map((city, index) => (
           <City key={index} city={city} cityNm={cityDatas[city - 1].city_nm} nextCity={citys[index + 1]} index={index} onDelete={handleDelete} />
         ))}
-        {user && citys.length > 0 && <RouteForm />}
       </div>
     </div>
   );

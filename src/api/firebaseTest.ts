@@ -22,8 +22,6 @@ type RouteType = {
 };
 
 export async function getRoutes(): Promise<object[]> {
-  console.log('test');
-
   return get(ref(database, 'routes')).then((snapshot) => (snapshot.exists() ? Object.values(snapshot.val()) : []));
 }
 
@@ -48,6 +46,7 @@ export async function addOrUpdateRoute(
 }
 
 export async function removeRoute(id: string) {
+  console.log('remove', id);
   remove(ref(database, `routes/${id}`));
   return null;
 }
