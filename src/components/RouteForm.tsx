@@ -37,7 +37,7 @@ export default function RouteForm({ citys }) {
   return (
     <form className='flex flex-col px-12' onSubmit={handleSubmit}>
       <input name='title' value={route.title ?? ''} placeholder='제목' required onChange={handleChange} />
-      <textarea rows={5} className='resize-none border border-gray-300 px-4 py-2 focus:outline-none my-2' name='description' value={route.description ?? ''} placeholder=' 설명' onChange={handleChange}></textarea>
+      <textarea rows={5} className='resize-none border border-gray-300 px-2 py-2 focus:outline-none my-2' name='description' value={route.description ?? ''} placeholder=' 설명' onChange={handleChange}></textarea>
       <Button text={'Save'}></Button>
     </form>
   );
