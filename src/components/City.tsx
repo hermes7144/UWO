@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { BsFillTrashFill } from 'react-icons/bs';
-import { useInfoContext } from './context/InfoContext';
+import { useInfoContext } from '../context/InfoContext';
 
 type CityProps = {
   city: number;

@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import AllRoutes from './pages/AllRoutes';
 import RouteDetail from './pages/RouteDetail';
 import RouteNew from './pages/RouteNew';
+import ProtectedRoute from './pages/ProtectedRoute';
 
 const router = createBrowserRouter([
   {
@@ -17,10 +18,24 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { index: true, path: '/', element: <Home /> },
-      { path: '/routes/update/:id', element: <RouteNew /> },
+      {
+        path: '/routes/update/:id',
+        element: (
+          <ProtectedRoute>
+            <RouteNew />
+          </ProtectedRoute>
+        ),
+      },
       { path: '/routes', element: <AllRoutes /> },
       { path: '/routes/:id', element: <RouteDetail /> },
-      { path: '/routes/new', element: <RouteNew /> },
+      {
+        path: '/routes/new',
+        element: (
+          <ProtectedRoute>
+            <RouteNew />
+          </ProtectedRoute>
+        ),
+      },
     ],
   },
 ]);

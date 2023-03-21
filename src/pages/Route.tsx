@@ -6,7 +6,7 @@ import City from '../components/City';
 import Button from '../components/ui/Button';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useRoute from '../Hooks/useRoute';
-import { useAuthContext } from '../components/context/AuthContext';
+import { useAuthContext } from '../context/AuthContext';
 
 const geoUrl = process.env.PUBLIC_URL + '/maps/land-50m.json';
 

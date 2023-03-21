@@ -7,7 +7,7 @@ import RouteForm from '../components/RouteForm';
 import Button from '../components/ui/Button';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useRoute from '../Hooks/useRoute';
-import { useAuthContext } from '../components/context/AuthContext';
+import { useAuthContext } from '../context/AuthContext';
 
 const geoUrl = process.env.PUBLIC_URL + '/maps/land-50m.json';
 
@@ -19,7 +19,6 @@ export default function Map() {
   const { uid } = useAuthContext();
 
   const { state } = useLocation();
-  console.log(state);
 
   useEffect(() => {
     if (state && state.route.citys) {

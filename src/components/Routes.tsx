@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { getUserRoutes } from '../api/firebaseTest';
 import RouteCard from './RouteCard';
-import { useAuthContext } from './context/AuthContext';
+import { useAuthContext } from '../context/AuthContext';
 
 type RouteType = {
   id: string;

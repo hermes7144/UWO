@@ -1,6 +1,6 @@
 import { useMutation, UseMutationResult, useQueryClient } from '@tanstack/react-query';
 import { addOrUpdateRoute, removeRoute } from '../api/firebaseTest';
-import { useAuthContext } from '../components/context/AuthContext';
+import { useAuthContext } from '../context/AuthContext';
 
 export default function useRoute() {
   const { uid } = useAuthContext();

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import User from './User';
 import Button from './ui/Button';
-import { useAuthContext } from './context/AuthContext';
+import { useAuthContext } from '../context/AuthContext';
 import { login, logout } from '../api/firebase';
 
 export default function Navbar() {

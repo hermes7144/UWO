@@ -1,4 +1,4 @@
-import { getGoods } from '../../api/firebase';
+import { getGoods } from '../api/firebase';
 import { InfoContext } from './InfoContext';
 import { useState } from 'react';
 

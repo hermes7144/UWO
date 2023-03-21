@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { login, logout, onUserStateChange } from '../../api/firebase';
+import { login, logout, onUserStateChange } from '../api/firebase';
 import { AuthContext } from './AuthContext';
 import { User } from '@firebase/auth';
 

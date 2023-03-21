@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter, Routes } from 'react-router-dom';
-import { InfoContext } from '../components/context/InfoContext';
+import { InfoContext } from '../context/InfoContext';
 
 export function withRouter(routes, initialEntry = '/') {
   return <MemoryRouter initialEntry={[initialEntry]}>
