@@ -5,22 +5,24 @@ type RouteType = {
   route: {
     id: string;
     title: string;
-    remark: string;
+    description: string;
     citys: number[];
+    createdAt: number;
   };
 };
 
 export default function RouteCard({ route }: RouteType) {
   const navigate = useNavigate();
 
-  const handleRoute = () => {
-    navigate(`/routes/${route.id}`, { state: { route } });
-  };
-
   return (
-    <li className={'round-lg shadow-md overflow-hidden cursor-pointer p-2 m-1'} onClick={handleRoute}>
-      <div className='mt-2 px-2 flex flex-row items-center justify-between'>
-        <h3>{route.title}</h3>
+    <li
+      className='round-lg shadow-lg overflow-hidden cursor-pointer hover:scale-105'
+      onClick={() => {
+        navigate(`/routes/${route.id}`);
+      }}
+    >
+      <div className='mt-1 px-1 text-xl flex justify-between'>
+        <span>{route.title}</span>
       </div>
     </li>
   );
