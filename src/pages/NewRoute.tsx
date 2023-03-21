@@ -5,8 +5,9 @@ import useRoute from '../Hooks/useRoute';
 import { useAuthContext } from '../context/AuthContext';
 import Map from '../components/Map';
 import Citys from '../components/Citys';
+import RouteForm from '../components/RouteForm';
 
-export default function RouteDetail() {
+export default function NewRoute() {
   const [citys, setCitys] = useState<number[]>([]);
   const { uid } = useAuthContext();
   const { state } = useLocation();
@@ -19,11 +20,17 @@ export default function RouteDetail() {
     }
   }, [state]);
 
-  const handleUpdate = () => {
-    navigate(`/routes/update/${state.route.id}`, { state: state });
-  };
+  function handleMarkerClick(id: number) {
+    if (citys[citys.length - 1] !== id) {
+      // 클릭한 값이 마지막 값과 다르면 배열에 추가
+      setCitys([...citys, id]);
+    } else {
+      // 클릭한 값이 마지막 값과 같으면 배열에서 제거
+      setCitys(citys.slice(0, citys.length - 1));
+    }
+  }
 
-  const handleDelete = () => {
+  const handleDeleteRoute = () => {
     if (!window.confirm('삭제하시겠습니까?')) return false;
 
     const id = state.route.id;
@@ -36,21 +43,18 @@ export default function RouteDetail() {
       }
     );
   };
+
+  const handleDeleteCity = (delIndex: number): void => setCitys(citys.filter((city, index) => index !== delIndex));
+
   return (
     <div className='flex flex-col sm:flex-row'>
       <div className='basis-4/6'>
-        <Map citys={citys} isEditable={false} onMarker={() => false} />
+        <Map citys={citys} onMarker={handleMarkerClick} />
       </div>
       <div className='basis-2/6 flex flex-col p-2'>
-        {state && state.route.user_id === uid && (
-          <div className='flex justify-end'>
-            <Button text={'수정'} onClick={handleUpdate} />
-            <Button text={'삭제'} onClick={handleDelete} />
-          </div>
-        )}
-        <h1 className='text-2xl'>{state.route.title}</h1>
-        <Citys citys={citys} isEditable={false} onDelete={() => {}} />
-        <p>{state.route.description}</p>
+        <div className='flex justify-end'>{state && state.route.user_id === uid && <Button text={'삭제'} onClick={handleDeleteRoute} />}</div>
+        <Citys citys={citys} onDelete={handleDeleteCity} />
+        <RouteForm citys={citys} />
       </div>
     </div>
   );

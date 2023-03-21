@@ -8,8 +8,8 @@ import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import AllRoutes from './pages/AllRoutes';
 import RouteDetail from './pages/RouteDetail';
-import RouteNew from './pages/RouteNew';
 import ProtectedRoute from './pages/ProtectedRoute';
+import NewRoute from './pages/NewRoute';
 
 const router = createBrowserRouter([
   {
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
         path: '/routes/update/:id',
         element: (
           <ProtectedRoute>
-            <RouteNew />
+            <NewRoute />
           </ProtectedRoute>
         ),
       },
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
         path: '/routes/new',
         element: (
           <ProtectedRoute>
-            <RouteNew />
+            <NewRoute />
           </ProtectedRoute>
         ),
       },

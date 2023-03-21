@@ -8,10 +8,11 @@ type CityProps = {
   nextCity: number;
   index: number;
   cityNm: string;
+  isEditable?: boolean;
   onDelete: (index: number) => void;
 };
 
-export default function City({ city, nextCity, index, cityNm, onDelete }: CityProps) {
+export default function City({ city, nextCity, index, cityNm, isEditable = true, onDelete }: CityProps) {
   const { getGoods } = useInfoContext();
   const { isLoading, data: goods } = useQuery(['goods', city], () => getGoods(city), { staleTime: Infinity });
   const { data: nextGoods } = useQuery(['goods', nextCity], () => getGoods(nextCity), { staleTime: Infinity, enabled: !!nextCity });
@@ -23,7 +24,7 @@ export default function City({ city, nextCity, index, cityNm, onDelete }: CityPr
   return (
     <section>
       {isLoading && <p>Loading...</p>}
-      <table className='border-solid border-2 mt-2'>
+      <table className='border-solid border-2 my-2'>
         <tbody>
           <tr>
             <th className='border-solid border-2 w-6' rowSpan={2}>
@@ -32,7 +33,7 @@ export default function City({ city, nextCity, index, cityNm, onDelete }: CityPr
             <th rowSpan={2}>
               <div className='flex justify-center items-center w-24'>
                 <span>{cityNm}</span>
-                <BsFillTrashFill className='cursor-pointer opacity-50 hover:opacity-100' onClick={handleDelete} />
+                {isEditable && <BsFillTrashFill className='cursor-pointer opacity-50 hover:opacity-100' onClick={handleDelete} />}
               </div>
             </th>
             {goods &&

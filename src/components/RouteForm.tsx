@@ -3,13 +3,13 @@ import useRoute from '../Hooks/useRoute';
 import Button from './ui/Button';
 import { useLocation, useNavigate } from 'react-router-dom';
 type RouteType = {
-  id: string;
-  title: string;
-  remark: string;
+  id?: string;
+  title?: string;
+  description?: string;
 };
 
 export default function RouteForm({ citys }) {
-  const [route, setRoute] = useState<RouteType>({ id: '', title: '', remark: '' });
+  const [route, setRoute] = useState<RouteType>({});
   const { addOrUpdateItem } = useRoute();
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -35,9 +35,9 @@ export default function RouteForm({ citys }) {
     );
   };
   return (
-    <form className='flex flex-col px-12 mt-2' onSubmit={handleSubmit}>
-      <input name='title' value={route.title ?? ''} placeholder='무역 루트명' required onChange={handleChange} />
-      <input name='remark' value={route.remark ?? ''} placeholder=' 비고' onChange={handleChange} />
+    <form className='flex flex-col px-12' onSubmit={handleSubmit}>
+      <input name='title' value={route.title ?? ''} placeholder='제목' required onChange={handleChange} />
+      <textarea rows={5} className='resize-none border border-gray-300 px-4 py-2 focus:outline-none my-2' name='description' value={route.description ?? ''} placeholder=' 설명' onChange={handleChange}></textarea>
       <Button text={'Save'}></Button>
     </form>
   );

@@ -4,6 +4,7 @@ import { getRoutes } from '../api/firebaseTest';
 import RouteCard from '../components/RouteCard';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/ui/Button';
+import { useAuthContext } from '../context/AuthContext';
 
 type RouteType = {
   id: string;
@@ -14,6 +15,7 @@ type RouteType = {
 
 export default function AllRoutes() {
   const { isLoading, error, data: routes } = useQuery(['routes'], getRoutes);
+  const { user } = useAuthContext();
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -21,10 +23,11 @@ export default function AllRoutes() {
   };
   return (
     <section>
-      <div className='flex justify-end m-2'>
-        <Button text={'새 무역경로'} onClick={handleClick}></Button>
-      </div>
-
+      {user && (
+        <div className='flex justify-end m-2'>
+          <Button text={'새 무역경로'} onClick={handleClick}></Button>
+        </div>
+      )}
       {isLoading && <p>Loading...</p>}
       {error && <p>Error</p>}
       <ul>{routes && routes.map((route: RouteType) => <RouteCard key={route.id} route={route} />)}</ul>

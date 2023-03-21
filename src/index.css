@@ -26,3 +26,7 @@ label {
 input {
   @apply p-3 outline-none border border-gray-300 my-1;
 }
+
+button + button {
+  margin-left: 5px;
+}

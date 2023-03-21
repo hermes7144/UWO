@@ -17,7 +17,6 @@ export default function Map() {
   const navigate = useNavigate();
 
   const { uid } = useAuthContext();
-
   const { state } = useLocation();
 
   useEffect(() => {
