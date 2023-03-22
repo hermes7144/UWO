@@ -22,7 +22,7 @@ export default function RouteDetail() {
   }, [route]);
 
   const handleUpdate = () => {
-    navigate(`/routes/update/${id}`);
+    navigate(`/routes/update/${id}`, { state: { route } });
   };
 
   const handleDelete = () => {
@@ -39,25 +39,27 @@ export default function RouteDetail() {
   };
   return (
     <>
-      {isLoading}
       {isLoading && <p>Loading...</p>}
       {error && <p>Error</p>}
-      <div className='flex flex-col sm:flex-row'>
-        <div className='basis-4/6'>
-          <Map citys={citys} isEditable={false} onMarker={() => false} />
+
+      {route && (
+        <div className='flex flex-col sm:flex-row'>
+          <div className='basis-4/6'>
+            <Map citys={citys} isEditable={false} onMarker={() => {}} />
+          </div>
+          <div className='basis-2/6 flex flex-col p-2'>
+            {route.user_id === uid && (
+              <div className='flex justify-end'>
+                <Button text={'수정'} onClick={handleUpdate} />
+                <Button text={'삭제'} onClick={handleDelete} />
+              </div>
+            )}
+            <h1 className='text-2xl'>{route.title}</h1>
+            <span className='whitespace-pre'>{route.description}</span>
+            <Citys citys={citys} isEditable={false} onDelete={() => {}} />
+          </div>
         </div>
-        <div className='basis-2/6 flex flex-col p-2'>
-          {route && route.user_id === uid && (
-            <div className='flex justify-end'>
-              <Button text={'수정'} onClick={handleUpdate} />
-              <Button text={'삭제'} onClick={handleDelete} />
-            </div>
-          )}
-          <h1 className='text-2xl'>{route && route.title}</h1>
-          <Citys citys={citys} isEditable={false} onDelete={() => {}} />
-          <span className='whitespace-pre'>{route && route.description}</span>
-        </div>
-      </div>
+      )}
     </>
   );
 }
