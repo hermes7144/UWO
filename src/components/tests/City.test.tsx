@@ -35,6 +35,6 @@ describe('City', () => {
   });
 
   function renderCitys() {
-    return render(withAllContexts(withRouter(<Route path='/' element={<City city={city} nextCity={nextCity} cityNm={cityNm} index={index} onDelete={handleDelete} />} />), getGoods));
+    return render(withAllContexts(withRouter(<Route path='/' element={<City city={city} nextCity={nextCity} cityNm={cityNm} index={index} onDelete={handleDelete} coordinates={[3, 3]} />} />), getGoods));
   }
 });

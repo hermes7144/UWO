@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { useInfoContext } from '../context/InfoContext';
+import { useCoordinatesContext } from '../context/CoordinatesContext';
 
 type CityProps = {
   city: number;
@@ -9,17 +10,22 @@ type CityProps = {
   index: number;
   cityNm: string;
   isEditable?: boolean;
+  coordinates: [number, number];
   onDelete: (index: number) => void;
 };
 
-export default function City({ city, nextCity, index, cityNm, isEditable = true, onDelete }: CityProps) {
+export default function City({ city, nextCity, index, cityNm, coordinates, isEditable = true, onDelete }: CityProps) {
   const { getGoods } = useInfoContext();
   const { isLoading, data: goods } = useQuery(['goods', city], () => getGoods(city), { staleTime: Infinity });
   const { data: nextGoods } = useQuery(['goods', nextCity], () => getGoods(nextCity), { staleTime: Infinity, enabled: !!nextCity });
 
   const nextItems = nextGoods && nextGoods.map((nextgood) => nextgood.goods_nm);
-
   const handleDelete = () => onDelete(index);
+
+  const { setCoordinates } = useCoordinatesContext();
+  const handleClick = (coordinates) => {
+    setCoordinates(coordinates);
+  };
 
   return (
     <section>
@@ -31,8 +37,9 @@ export default function City({ city, nextCity, index, cityNm, isEditable = true,
               {index + 1}
             </th>
             <th rowSpan={2}>
-              <div className='flex justify-center items-center w-24'>
-                <span>{cityNm}</span>
+              <div className='flex flex-col justify-center items-center w-24'>
+                <button onClick={() => handleClick(coordinates)}>{cityNm}</button>
+
                 {isEditable && <BsFillTrashFill className='cursor-pointer opacity-50 hover:opacity-100' onClick={handleDelete} />}
               </div>
             </th>

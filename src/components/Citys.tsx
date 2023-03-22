@@ -12,5 +12,5 @@ type CityType = {
 export default function Citys({ citys, isEditable, onDelete }: CityType) {
   const { data: cityDatas } = useQuery(['citys'], getCitys);
 
-  return <div>{cityDatas && citys && citys.map((city, index) => <City key={index} city={city} cityNm={cityDatas[city - 1].city_nm} nextCity={citys[index + 1]} index={index} isEditable={isEditable} onDelete={onDelete} />)}</div>;
+  return <div>{cityDatas && citys && citys.map((city, index) => <City key={index} city={city} cityNm={cityDatas[city - 1].city_nm} nextCity={citys[index + 1]} index={index} isEditable={isEditable} onDelete={onDelete} coordinates={cityDatas[city - 1].city_coordinates} />)}</div>;
 }
