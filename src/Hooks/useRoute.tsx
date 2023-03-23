@@ -1,6 +1,6 @@
-import { useMutation, UseMutationResult, useQueryClient } from '@tanstack/react-query';
+import { useMutation, UseMutationResult, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import { addOrUpdateRoute, removeRoute } from '../api/firebaseTest';
+import { addOrUpdateRoute, getRoutes as fetchRoutes, getRoute as fetchRoute, removeRoute } from '../api/firebaseTest';
 import { useAuthContext } from '../context/AuthContext';
 
 export default function useRoute() {
@@ -23,9 +23,12 @@ export default function useRoute() {
     id: string;
   };
 
+  const routesQuery = useQuery(['routes'], fetchRoutes, { staleTime: 1000 * 60 });
+
+  const routeQuery = useQuery(['route', id], () => fetchRoute(id), { staleTime: 1000 * 60 });
+
   const addOrUpdateItem: UseMutationResult<RouteType> = useMutation(({ route, citys }: RouteType) => addOrUpdateRoute(uid, route, citys), {
     onSuccess: () => {
-      queryClient.invalidateQueries(['citys']);
       queryClient.invalidateQueries(['route', id]);
     },
   });
@@ -36,5 +39,5 @@ export default function useRoute() {
     },
   });
 
-  return { addOrUpdateItem, removeItem };
+  return { routesQuery, routeQuery, addOrUpdateItem, removeItem };
 }

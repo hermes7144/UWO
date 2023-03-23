@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Button from '../components/ui/Button';
 import { useNavigate, useParams } from 'react-router-dom';
 import useRoute from '../Hooks/useRoute';
 import { useAuthContext } from '../context/AuthContext';
 import Map from '../components/Map';
 import Citys from '../components/Citys';
-import { useQuery } from '@tanstack/react-query';
-import { getRoute } from '../api/firebaseTest';
 
 export default function RouteDetail() {
   const { id } = useParams();
@@ -14,7 +12,9 @@ export default function RouteDetail() {
   const { uid } = useAuthContext();
   const { removeItem } = useRoute();
 
-  const { isLoading, error, data: route } = useQuery(['route', id], () => getRoute(id), { staleTime: 1000 * 60 });
+  const {
+    routeQuery: { isLoading, error, data: route },
+  } = useRoute();
 
   const handleUpdate = () => {
     navigate(`/routes/update/${id}`, { state: { route } });

@@ -1,5 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
-import { getRoutes } from '../api/firebaseTest';
+import useRoute from '../Hooks/useRoute';
 import RouteCard from './RouteCard';
 
 type RouteType = {
@@ -11,7 +10,9 @@ type RouteType = {
 };
 
 export default function Routes() {
-  const { isLoading, error, data: routes } = useQuery(['routes'], getRoutes);
+  const {
+    routesQuery: { isLoading, error, data: routes },
+  } = useRoute();
 
   return (
     <>

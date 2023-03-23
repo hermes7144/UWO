@@ -16,7 +16,7 @@ export default function Map({ citys, isEditable = true, onMarker }: MapType) {
   const { coordinates, setCoordinates } = useCoordinatesContext();
 
   useEffect(() => {
-    setCoordinates([15, 42]);
+    citys.length === 0 && setCoordinates([15, 42]);
   }, []);
 
   return (
