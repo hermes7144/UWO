@@ -16,16 +16,20 @@ type CityProps = {
 
 export default function City({ city, nextCity, index, cityNm, coordinates, isEditable = true, onDelete }: CityProps) {
   const { getGoods } = useInfoContext();
+  const { setCoordinates } = useCoordinatesContext();
   const { isLoading, data: goods } = useQuery(['goods', city], () => getGoods(city), { staleTime: Infinity });
   const { data: nextGoods } = useQuery(['goods', nextCity], () => getGoods(nextCity), { staleTime: Infinity, enabled: !!nextCity });
 
   const nextItems = nextGoods && nextGoods.map((nextgood) => nextgood.goods_nm);
   const handleDelete = () => onDelete(index);
 
-  const { setCoordinates } = useCoordinatesContext();
   const handleClick = (coordinates) => {
     setCoordinates(coordinates);
   };
+
+  useEffect(() => {
+    index === 0 && setCoordinates(coordinates);
+  }, []);
 
   return (
     <section>

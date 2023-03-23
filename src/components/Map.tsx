@@ -16,13 +16,14 @@ export default function Map({ citys, isEditable = true, onMarker }: MapType) {
   const { coordinates, setCoordinates } = useCoordinatesContext();
 
   useEffect(() => {
-    setCoordinates(cityDatas && citys && citys.length > 0 ? cityDatas.filter((city) => city.city_id === citys[0])[0].city_coordinates : [12, 43]);
-  }, [citys && citys[0]]);
+    setCoordinates([15, 42]);
+  }, []);
+
   return (
     <>
       {cityDatas && (
         <ComposableMap projectionConfig={{ scale: 110 }} width={650} height={445} className='bg-blue-300'>
-          <ZoomableGroup center={coordinates} zoom={7} minZoom={1}>
+          <ZoomableGroup center={coordinates} zoom={7}>
             <Geographies geography={geoUrl}>{({ geographies }) => geographies.map((geo) => <Geography key={geo.rsmKey} geography={geo} fill='#D0AE89' />)}</Geographies>
             {cityDatas.map(({ city_id, city_nm, city_coordinates, markerOffset }) => (
               <Marker className={!isEditable ? '' : 'cursor-pointer'} key={city_id} coordinates={city_coordinates} onClick={() => onMarker(city_id)}>

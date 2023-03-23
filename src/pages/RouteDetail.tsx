@@ -9,17 +9,12 @@ import { useQuery } from '@tanstack/react-query';
 import { getRoute } from '../api/firebaseTest';
 
 export default function RouteDetail() {
-  const [citys, setCitys] = useState<number[]>([]);
   const { id } = useParams();
   const navigate = useNavigate();
   const { uid } = useAuthContext();
   const { removeItem } = useRoute();
 
-  const { isLoading, error, data: route } = useQuery(['route', id], () => getRoute(id));
-
-  useEffect(() => {
-    if (route) setCitys(route.citys);
-  }, [route]);
+  const { isLoading, error, data: route } = useQuery(['route', id], () => getRoute(id), { staleTime: 1000 * 60 });
 
   const handleUpdate = () => {
     navigate(`/routes/update/${id}`, { state: { route } });
@@ -41,11 +36,10 @@ export default function RouteDetail() {
     <>
       {isLoading && <p>Loading...</p>}
       {error && <p>Error</p>}
-
       {route && (
         <div className='flex flex-col sm:flex-row'>
           <div className='basis-4/6'>
-            <Map citys={citys} isEditable={false} onMarker={() => {}} />
+            <Map citys={route.citys} isEditable={false} onMarker={() => {}} />
           </div>
           <div className='basis-2/6 flex flex-col p-2'>
             {route.user_id === uid && (
@@ -56,7 +50,7 @@ export default function RouteDetail() {
             )}
             <h1 className='text-2xl'>{route.title}</h1>
             <span className='whitespace-pre'>{route.description}</span>
-            <Citys citys={citys} isEditable={false} onDelete={() => {}} />
+            <Citys citys={route.citys} isEditable={false} onDelete={() => {}} />
           </div>
         </div>
       )}
