@@ -11,11 +11,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <AuthContextProvider>
         <Navbar />
-        <InfoContextProvider>
-          <CoordinatesContextProvider>
-            <Outlet />
-          </CoordinatesContextProvider>
-        </InfoContextProvider>
+        <CoordinatesContextProvider>
+          <Outlet />
+        </CoordinatesContextProvider>
       </AuthContextProvider>
     </QueryClientProvider>
   );

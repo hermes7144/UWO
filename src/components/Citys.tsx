@@ -1,7 +1,6 @@
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { getCitys } from '../api/firebase';
 import City from './City';
+import useCity from '../Hooks/useCity';
 
 type CityType = {
   citys: number[];
@@ -10,7 +9,9 @@ type CityType = {
 };
 
 export default function Citys({ citys, isEditable, onDelete }: CityType) {
-  const { data: cityDatas } = useQuery(['citys'], getCitys);
+  const {
+    citysQuery: { data: cityDatas },
+  } = useCity(null);
 
-  return <div>{cityDatas && citys && citys.map((city, index) => <City key={index} city={city} cityNm={cityDatas[city - 1].city_nm} nextCity={citys[index + 1]} index={index} isEditable={isEditable} onDelete={onDelete} coordinates={cityDatas[city - 1].city_coordinates} />)}</div>;
+  return <div>{cityDatas && citys && citys.map((city, index) => <City key={index} citys={citys} cityNm={cityDatas[city - 1].city_nm} index={index} isEditable={isEditable} onDelete={onDelete} coordinates={cityDatas[city - 1].city_coordinates} />)}</div>;
 }

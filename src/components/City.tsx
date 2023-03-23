@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
-import { useQuery } from '@tanstack/react-query';
 import { BsFillTrashFill } from 'react-icons/bs';
-import { useInfoContext } from '../context/InfoContext';
 import { useCoordinatesContext } from '../context/CoordinatesContext';
+import useCity from '../Hooks/useCity';
 
 type CityProps = {
-  city: number;
-  nextCity: number;
+  citys: number[];
   index: number;
   cityNm: string;
   isEditable?: boolean;
@@ -14,11 +12,14 @@ type CityProps = {
   onDelete: (index: number) => void;
 };
 
-export default function City({ city, nextCity, index, cityNm, coordinates, isEditable = true, onDelete }: CityProps) {
-  const { getGoods } = useInfoContext();
+export default function City({ citys, index, cityNm, coordinates, isEditable = true, onDelete }: CityProps) {
   const { setCoordinates } = useCoordinatesContext();
-  const { isLoading, data: goods } = useQuery(['goods', city], () => getGoods(city), { staleTime: Infinity });
-  const { data: nextGoods } = useQuery(['goods', nextCity], () => getGoods(nextCity), { staleTime: Infinity, enabled: !!nextCity });
+  const {
+    goodsQuery: { isLoading, data: goods },
+  } = useCity(citys[index]);
+  const {
+    goodsQuery: { data: nextGoods },
+  } = useCity(citys[index + 1]);
 
   const nextItems = nextGoods && nextGoods.map((nextgood) => nextgood.goods_nm);
   const handleDelete = () => onDelete(index);

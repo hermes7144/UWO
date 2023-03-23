@@ -7,7 +7,6 @@ type RouteType = {
     title: string;
     description: string;
     citys: number[];
-    createdAt: number;
   };
 };
 

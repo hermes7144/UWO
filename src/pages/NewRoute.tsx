@@ -9,6 +9,7 @@ import RouteForm from '../components/RouteForm';
 
 export default function NewRoute() {
   const [citys, setCitys] = useState<number[]>([]);
+
   const { uid } = useAuthContext();
   const { state } = useLocation();
   const { removeItem } = useRoute();

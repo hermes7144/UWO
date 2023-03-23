@@ -10,6 +10,7 @@ type RouteType = {
 
 export default function RouteForm({ citys }) {
   const [route, setRoute] = useState<RouteType>({});
+  const [success, setSuccess] = useState('');
   const { addOrUpdateItem } = useRoute();
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -25,17 +26,25 @@ export default function RouteForm({ citys }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     addOrUpdateItem.mutate(
       { route, citys },
       {
         onSuccess: () => {
-          navigate('/routes');
+          setSuccess('성공적으로 경로가 추가되었습니다.');
+
+          setTimeout(() => {
+            setSuccess(null);
+            navigate('/routes');
+          }, 1000);
         },
       }
     );
   };
   return (
-    <form className='flex flex-col px-12' onSubmit={handleSubmit}>
+    <form className='flex flex-col px-12 font-semibold' onSubmit={handleSubmit}>
+      {success && <p className='my-2'>✔️{success}</p>}
+
       <input name='title' value={route.title ?? ''} placeholder='제목' required onChange={handleChange} />
       <textarea rows={5} className='resize-none border border-gray-300 px-2 py-2 focus:outline-none my-2' name='description' value={route.description ?? ''} placeholder=' 설명' onChange={handleChange}></textarea>
       <Button text={'Save'}></Button>

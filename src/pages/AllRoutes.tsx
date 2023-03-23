@@ -14,7 +14,7 @@ export default function AllRoutes() {
   return (
     <>
       {user && (
-        <div className='flex justify-end m-1'>
+        <div className='flex justify-end m-1 font-semibold'>
           <Button text={'신규 경로'} onClick={handleClick}></Button>
         </div>
       )}

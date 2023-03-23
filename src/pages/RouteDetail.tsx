@@ -7,8 +7,8 @@ import Map from '../components/Map';
 import Citys from '../components/Citys';
 
 export default function RouteDetail() {
-  const { id } = useParams();
   const navigate = useNavigate();
+  const { id } = useParams();
   const { uid } = useAuthContext();
   const { removeItem } = useRoute();
 
@@ -43,7 +43,7 @@ export default function RouteDetail() {
           </div>
           <div className='basis-2/6 flex flex-col p-2'>
             {route.user_id === uid && (
-              <div className='flex justify-end'>
+              <div className='flex justify-end font-semibold'>
                 <Button text={'수정'} onClick={handleUpdate} />
                 <Button text={'삭제'} onClick={handleDelete} />
               </div>

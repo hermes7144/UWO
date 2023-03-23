@@ -56,7 +56,9 @@ export async function addOrUpdateRoute(
 ): Promise<RouteType> {
   const id = route.id ? route.id : uuid();
 
-  set(ref(database, `routes/${id}`), { ...route, user_id: userId, id, createdAt: serverTimestamp() });
+  const time = route.id == null ? { createdAt: serverTimestamp() } : { updatedAt: serverTimestamp() };
+
+  set(ref(database, `routes/${id}`), { ...route, user_id: userId, id, ...time });
   set(ref(database, `routes/${id}/citys`), { ...citys });
   return null;
 }
