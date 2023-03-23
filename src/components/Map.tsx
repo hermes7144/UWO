@@ -17,6 +17,7 @@ export default function Map({ citys, isEditable = true, onMarker }: MapType) {
 
   useEffect(() => {
     citys && citys.length === 0 && setCoordinates([15, 42]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

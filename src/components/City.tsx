@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { useCoordinatesContext } from '../context/CoordinatesContext';
 import useCity from '../Hooks/useCity';
@@ -24,12 +24,10 @@ export default function City({ citys, index, cityNm, coordinates, isEditable = t
   const nextItems = nextGoods && nextGoods.map((nextgood) => nextgood.goods_nm);
   const handleDelete = () => onDelete(index);
 
-  const handleClick = (coordinates) => {
-    setCoordinates(coordinates);
-  };
-
+  const handleClick = (coordinates) => setCoordinates(coordinates);
   useEffect(() => {
     index === 0 && setCoordinates(coordinates);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
