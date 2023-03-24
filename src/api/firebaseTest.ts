@@ -63,7 +63,7 @@ export async function addOrUpdateRoute(
 
   set(ref(database, `routes/${id}`), { ...route, user_id: userId, id, ...time });
   set(ref(database, `routes/${id}/citys`), { ...citys });
-  set(ref(database, `routes/${id}/major_goods`), route.major_goods.split(','));
+  set(ref(database, `routes/${id}/major_goods`), String(route.major_goods).replaceAll(' ', '').split(','));
   return null;
 }
 

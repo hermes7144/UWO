@@ -1,4 +1,3 @@
-import { type } from 'os';
 import { useEffect } from 'react';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { useCoordinatesContext } from '../context/CoordinatesContext';
@@ -32,8 +31,6 @@ export default function City({ citys, major_goods, major_chk, index, cityNm, coo
     index === 0 && setCoordinates(coordinates);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(major_goods);
-  console.log(typeof major_goods);
 
   return (
     <section>

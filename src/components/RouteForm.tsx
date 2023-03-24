@@ -6,7 +6,7 @@ type RouteType = {
   id?: string;
   title?: string;
   description?: string;
-  major_goods?: string[];
+  major_goods?: string;
   major_chk?: boolean;
 };
 
@@ -33,9 +33,11 @@ export default function RouteForm({ citys }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setRoute((route) => ({ ...route, major_goods: String(route.major_goods).replaceAll(' ', '') }));
+    console.log(route);
 
     addOrUpdateItem.mutate(
-      { route, citys },
+      { citys, route },
       {
         onSuccess: () => {
           setSuccess('성공적으로 경로가 추가되었습니다.');
@@ -53,10 +55,9 @@ export default function RouteForm({ citys }) {
       {success && <p className='my-2'>✔️{success}</p>}
       <input name='title' value={route.title ?? ''} placeholder='제목' required onChange={handleChange} />
       <textarea rows={5} className='resize-none border border-gray-300 px-2 py-2 focus:outline-none my-2' name='description' value={route.description ?? ''} placeholder=' 설명' onChange={handleChange}></textarea>
-      <div className='flex items-center'>
-        <label htmlFor='major_goods'>주요품목</label>
-        <input className='w-4/5 mx-3' id='major_goods' name='major_goods' value={route.major_goods ?? ''} placeholder='주요교역품' onChange={handleChange} />
-        <input className='w-4 h-4' name='major_chk' type='checkbox' checked={route.major_chk === true} onChange={handleChange} />
+      <div className='flex justify-between items-center'>
+        <input className='w-11/12' id='major_goods' name='major_goods' value={route.major_goods ?? ''} placeholder='주요교역품' onChange={handleChange} />
+        <input className='w-4 h-4 mx-3' name='major_chk' type='checkbox' checked={route.major_chk === true} onChange={handleChange} />
       </div>
       <Button text={'Save'}></Button>
     </form>
