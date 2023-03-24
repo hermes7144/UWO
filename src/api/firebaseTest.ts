@@ -39,7 +39,7 @@ type RouteType2 = {
   title?: string;
   description?: string;
   citys?: number[];
-  major_goods?: string;
+  major_goods?: string[];
   major_chk?: boolean;
 };
 
@@ -53,6 +53,7 @@ export async function addOrUpdateRoute(
     id?: string;
     title: string;
     remark?: string;
+    major_goods?: string;
   },
   citys: number[]
 ): Promise<RouteType> {
@@ -62,6 +63,7 @@ export async function addOrUpdateRoute(
 
   set(ref(database, `routes/${id}`), { ...route, user_id: userId, id, ...time });
   set(ref(database, `routes/${id}/citys`), { ...citys });
+  set(ref(database, `routes/${id}/major_goods`), route.major_goods.split(','));
   return null;
 }
 

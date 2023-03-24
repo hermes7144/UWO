@@ -4,7 +4,7 @@ import useCity from '../Hooks/useCity';
 
 type CityType = {
   citys: number[];
-  major_goods?: string;
+  major_goods?: string[];
   major_chk?: boolean;
   isEditable?: boolean;
   onDelete: (delIndex: number) => void;

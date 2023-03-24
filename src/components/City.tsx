@@ -1,3 +1,4 @@
+import { type } from 'os';
 import { useEffect } from 'react';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { useCoordinatesContext } from '../context/CoordinatesContext';
@@ -5,7 +6,7 @@ import useCity from '../Hooks/useCity';
 
 type CityProps = {
   citys: number[];
-  major_goods?: string;
+  major_goods?: string[];
   major_chk?: boolean;
   index: number;
   cityNm: string;
@@ -31,6 +32,8 @@ export default function City({ citys, major_goods, major_chk, index, cityNm, coo
     index === 0 && setCoordinates(coordinates);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  console.log(major_goods);
+  console.log(typeof major_goods);
 
   return (
     <section>
@@ -50,7 +53,7 @@ export default function City({ citys, major_goods, major_chk, index, cityNm, coo
             </th>
             {goods &&
               goods
-                // .filter((good) => !major_chk || !major_goods || (major_chk && major_goods && major_goods.includes(good.goods_nm)))
+                .filter((good) => !major_chk || !major_goods || (major_chk && major_goods && major_goods.includes(good.goods_nm)))
                 .map((good, index) => (
                   <td key={index} className={'border-solid border-2 w-30 ' + (good.specialty ? 'bg-yellow-200' : '')}>
                     <img className='m-auto' src={good.goods_url} alt='' />
@@ -60,7 +63,7 @@ export default function City({ citys, major_goods, major_chk, index, cityNm, coo
           <tr>
             {goods &&
               goods
-                // .filter((good) => !major_chk || !major_goods || (major_chk && major_goods && major_goods.includes(good.goods_nm)))
+                .filter((good) => !major_chk || !major_goods || (major_chk && major_goods && major_goods.includes(good.goods_nm)))
                 .map((good, index) => (
                   <td key={index} className='border-solid border-2 text-center text-xs'>
                     <span className={!major_chk && nextItems && nextItems.includes(good.goods_nm) ? 'text-red-600' : ''}>{good.goods_nm}</span>
