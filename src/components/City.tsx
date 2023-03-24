@@ -5,6 +5,8 @@ import useCity from '../Hooks/useCity';
 
 type CityProps = {
   citys: number[];
+  major_goods?: string;
+  major_chk?: boolean;
   index: number;
   cityNm: string;
   isEditable?: boolean;
@@ -12,7 +14,7 @@ type CityProps = {
   onDelete: (index: number) => void;
 };
 
-export default function City({ citys, index, cityNm, coordinates, isEditable = true, onDelete }: CityProps) {
+export default function City({ citys, major_goods, major_chk, index, cityNm, coordinates, isEditable = true, onDelete }: CityProps) {
   const { setCoordinates } = useCoordinatesContext();
   const {
     goodsQuery: { isLoading, data: goods },
@@ -29,6 +31,8 @@ export default function City({ citys, index, cityNm, coordinates, isEditable = t
     index === 0 && setCoordinates(coordinates);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  console.log(major_chk);
 
   return (
     <section>
@@ -47,19 +51,23 @@ export default function City({ citys, index, cityNm, coordinates, isEditable = t
               </div>
             </th>
             {goods &&
-              goods.map((good, index) => (
-                <td key={index} className={'border-solid border-2 w-30 ' + (good.specialty ? 'bg-yellow-200' : '')}>
-                  <img className='m-auto' src={good.goods_url} alt='' />
-                </td>
-              ))}
+              goods
+                .filter((good) => !major_chk || !major_goods || (major_chk && major_goods && major_goods.includes(good.goods_nm)))
+                .map((good, index) => (
+                  <td key={index} className={'border-solid border-2 w-30 ' + (good.specialty ? 'bg-yellow-200' : '')}>
+                    <img className='m-auto' src={good.goods_url} alt='' />
+                  </td>
+                ))}
           </tr>
           <tr>
             {goods &&
-              goods.map((good, index) => (
-                <td key={index} className='border-solid border-2 text-center text-xs'>
-                  <span className={nextItems && nextItems.includes(good.goods_nm) ? 'text-red-600' : ''}>{good.goods_nm}</span>
-                </td>
-              ))}
+              goods
+                .filter((good) => !major_chk || !major_goods || (major_chk && major_goods && major_goods.includes(good.goods_nm)))
+                .map((good, index) => (
+                  <td key={index} className='border-solid border-2 text-center text-xs'>
+                    <span className={!major_chk && nextItems && nextItems.includes(good.goods_nm) ? 'text-red-600' : ''}>{good.goods_nm}</span>
+                  </td>
+                ))}
           </tr>
         </tbody>
       </table>

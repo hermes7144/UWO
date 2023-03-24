@@ -50,7 +50,7 @@ export default function RouteDetail() {
             )}
             <h1 className='text-2xl'>{route.title}</h1>
             <span className='whitespace-pre'>{route.description}</span>
-            <Citys citys={route.citys} isEditable={false} onDelete={() => {}} />
+            <Citys citys={route.citys} major_goods={route.major_goods} major_chk={route.major_chk} isEditable={false} onDelete={() => {}} />
           </div>
         </div>
       )}

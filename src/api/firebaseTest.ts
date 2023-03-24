@@ -39,6 +39,8 @@ type RouteType2 = {
   title?: string;
   description?: string;
   citys?: number[];
+  major_goods?: string;
+  major_chk?: boolean;
 };
 
 export async function getRoute(id: string): Promise<RouteType2> {
