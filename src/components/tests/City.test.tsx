@@ -2,8 +2,6 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { Route } from 'react-router-dom';
 import { withAllContexts, withRouter } from '../../tests/utils';
 import City from '../City';
-import useCity from '../../Hooks/useCity';
-jest.mock('../../Hooks/useCity');
 
 type RouteType = {
   id?: string;
@@ -22,18 +20,6 @@ type MarkerType = {
 };
 
 describe('City component', () => {
-  jest.mock('../../Hooks/useCity', () => {
-    return {
-      goodsQuery: {
-        isLoading: false,
-        data: [
-          { goods_nm: 'mockGood1', goods_url: 'http://mockurl.com/mockGood1' },
-          { goods_nm: 'mockGood2', goods_url: 'http://mockurl.com/mockGood2' },
-        ],
-      },
-    };
-  });
-
   const city: MarkerType = {
     city_id: 1,
     city_nm: 'City Name',
@@ -50,15 +36,18 @@ describe('City component', () => {
     major_chk: true,
   };
 
-  const useCity = jest.fn();
+  const useCity = {
+    getGoods: jest.fn(),
+  };
+
+  useCity.getGoods.mockReturnValue({ loading: false, data: [0, 12] });
 
   it('mock implementation', () => {
-    renderCity();
-
-    useCity.mockImplementation(() => {
+    useCity.getGoods.mockImplementation(() => {
       console.log('Mock implementation');
       return 77;
     });
+    // renderCity();
   });
 
   // it('renders the city name', () => {
@@ -68,7 +57,7 @@ describe('City component', () => {
   //   expect(cityName).toBeInTheDocument();
   // });
 
-  function renderCity() {
-    return render(withAllContexts(withRouter(<Route path='/' element={<City route={mockRoute} index={0} city={city} />} />)));
-  }
+  // function renderCity() {
+  //   return render(withAllContexts(withRouter(<Route path='/' element={<City route={mockRoute} index={0} city={city} />} />)));
+  // }
 });

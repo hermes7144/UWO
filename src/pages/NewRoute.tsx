@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Button from '../components/ui/Button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useRoute from '../Hooks/useRoute';
 import { useAuthContext } from '../context/AuthContext';
 import Map from '../components/Map';
@@ -11,6 +11,7 @@ import { useUWORouteContext } from '../context/UWORouteContext';
 export default function NewRoute() {
   const { setEditable, setCitys } = useUWORouteContext();
   const { uid } = useAuthContext();
+
   const { removeItem } = useRoute();
   const navigate = useNavigate();
 
@@ -19,7 +20,7 @@ export default function NewRoute() {
   } = useRoute();
 
   useEffect(() => {
-    route.citys ? setCitys(route.citys) : setCitys([]);
+    route && route.citys ? setCitys(route.citys) : setCitys([]);
     setEditable(true);
 
     return () => {

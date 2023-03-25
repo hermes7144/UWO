@@ -3,12 +3,17 @@ import City from '../City';
 import { fakeGoods } from '../../tests/fakeGoods';
 import { withAllContexts, withRouter } from '../../tests/utils';
 import { Route } from 'react-router-dom';
+import { getGoods } from '../../api/firebase';
 
 describe('City', () => {
-  const getGoods = jest.fn();
+  const useCity = {
+    getGoods: jest.fn(),
+  }
+  
+  useCity.getGoods.mockReturnValue({loading:false, data:[0,12]})
 
   afterEach(() => {
-    getGoods.mockReset();
+    useCity.getGoods.mockReset();
   });
 
   const citys [0,1];
