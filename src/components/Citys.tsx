@@ -1,19 +1,28 @@
 import React from 'react';
 import City from './City';
 import useCity from '../Hooks/useCity';
+import { useUWORouteContext } from '../context/UWORouteContext';
 
-type CityType = {
-  citys: number[];
+type RouteType = {
+  id?: string;
+  user_id?: string;
+  title?: string;
+  description?: string;
+  citys?: number[];
   major_goods?: string[];
   major_chk?: boolean;
-  isEditable?: boolean;
-  onDelete: (delIndex: number) => void;
 };
 
-export default function Citys({ citys, major_goods, major_chk, isEditable, onDelete }: CityType) {
+type CityType = {
+  route: RouteType;
+};
+
+export default function Citys({ route }: CityType) {
   const {
-    citysQuery: { data: cityDatas },
+    markersQuery: { data: markers },
   } = useCity(null);
 
-  return <div>{cityDatas && citys && citys.map((city, index) => <City key={index} citys={citys} major_goods={major_goods} major_chk={major_chk} cityNm={cityDatas[city - 1].city_nm} index={index} isEditable={isEditable} onDelete={onDelete} coordinates={cityDatas[city - 1].city_coordinates} />)}</div>;
+  const { citys } = useUWORouteContext();
+
+  return <div>{markers && citys && citys.map((city, index) => <City key={index} route={route} city={markers[city - 1]} index={index} />)}</div>;
 }

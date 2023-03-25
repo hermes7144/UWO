@@ -14,7 +14,7 @@ export default function AllRoutes() {
   return (
     <>
       {user && (
-        <div className='flex justify-end m-1 font-semibold'>
+        <div className='flex justify-end p-2 font-semibold'>
           <Button text={'New'} onClick={handleClick}></Button>
         </div>
       )}

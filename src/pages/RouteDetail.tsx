@@ -10,27 +10,17 @@ export default function RouteDetail() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { uid } = useAuthContext();
-  const { removeItem } = useRoute();
 
   const {
     routeQuery: { isLoading, error, data: route },
+    removeItem,
   } = useRoute();
 
-  const handleUpdate = () => {
-    navigate(`/routes/update/${id}`, { state: { route } });
-  };
+  const handleUpdate = () => navigate(`/routes/update/${id}`, { state: { route } });
 
   const handleDelete = () => {
     if (!window.confirm('삭제하시겠습니까?')) return false;
-
-    removeItem.mutate(
-      { id },
-      {
-        onSuccess: () => {
-          navigate('/routes');
-        },
-      }
-    );
+    removeItem.mutate({ id }, { onSuccess: () => navigate('/routes') });
   };
   return (
     <>
@@ -39,7 +29,7 @@ export default function RouteDetail() {
       {route && (
         <div className='flex flex-col sm:flex-row'>
           <div className='basis-4/6'>
-            <Map citys={route.citys} isEditable={false} onMarker={() => {}} />
+            <Map />
           </div>
           <div className='basis-2/6 flex flex-col p-2'>
             {route.user_id === uid && (
@@ -50,7 +40,7 @@ export default function RouteDetail() {
             )}
             <h1 className='text-2xl'>{route.title}</h1>
             <span className='whitespace-pre'>{route.description}</span>
-            <Citys citys={route.citys} major_goods={route.major_goods} major_chk={route.major_chk} isEditable={false} onDelete={() => {}} />
+            <Citys route={route} />
           </div>
         </div>
       )}

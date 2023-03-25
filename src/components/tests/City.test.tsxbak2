@@ -1,0 +1,74 @@
+import { render, screen, fireEvent } from '@testing-library/react';
+import { Route } from 'react-router-dom';
+import { withAllContexts, withRouter } from '../../tests/utils';
+import City from '../City';
+import useCity from '../../Hooks/useCity';
+jest.mock('../../Hooks/useCity');
+
+type RouteType = {
+  id?: string;
+  user_id?: string;
+  title?: string;
+  description?: string;
+  citys?: number[];
+  major_goods?: string[];
+  major_chk?: boolean;
+};
+
+type MarkerType = {
+  city_id: number;
+  city_nm: string;
+  city_coordinates: [number, number];
+};
+
+describe('City component', () => {
+  jest.mock('../../Hooks/useCity', () => {
+    return {
+      goodsQuery: {
+        isLoading: false,
+        data: [
+          { goods_nm: 'mockGood1', goods_url: 'http://mockurl.com/mockGood1' },
+          { goods_nm: 'mockGood2', goods_url: 'http://mockurl.com/mockGood2' },
+        ],
+      },
+    };
+  });
+
+  const city: MarkerType = {
+    city_id: 1,
+    city_nm: 'City Name',
+    city_coordinates: [0, 0],
+  };
+
+  const mockRoute = {
+    id: '123',
+    user_id: '456',
+    title: 'Test Route',
+    description: 'Test Route Description',
+    citys: [1, 2, 3],
+    major_goods: ['Good 1', 'Good 2'],
+    major_chk: true,
+  };
+
+  const useCity = jest.fn();
+
+  it('mock implementation', () => {
+    renderCity();
+
+    useCity.mockImplementation(() => {
+      console.log('Mock implementation');
+      return 77;
+    });
+  });
+
+  // it('renders the city name', () => {
+  //   renderCity();
+
+  //   const cityName = screen.getByText('City Name');
+  //   expect(cityName).toBeInTheDocument();
+  // });
+
+  function renderCity() {
+    return render(withAllContexts(withRouter(<Route path='/' element={<City route={mockRoute} index={0} city={city} />} />)));
+  }
+});

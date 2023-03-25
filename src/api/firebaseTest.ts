@@ -51,8 +51,6 @@ export async function addOrUpdateRoute(
   userId: string,
   route: {
     id?: string;
-    title: string;
-    remark?: string;
     major_goods?: string;
   },
   citys: number[]
@@ -63,7 +61,13 @@ export async function addOrUpdateRoute(
 
   set(ref(database, `routes/${id}`), { ...route, user_id: userId, id, ...time });
   set(ref(database, `routes/${id}/citys`), { ...citys });
-  set(ref(database, `routes/${id}/major_goods`), String(route.major_goods).replaceAll(' ', '').split(','));
+
+  set(
+    ref(database, `routes/${id}/major_goods`),
+    String(route.major_goods || [])
+      .replaceAll(' ', '')
+      .split(',')
+  );
   return null;
 }
 

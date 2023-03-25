@@ -1,21 +1,32 @@
-import { useEffect } from 'react';
 import { BsFillTrashFill } from 'react-icons/bs';
-import { useCoordinatesContext } from '../context/CoordinatesContext';
+import { useUWORouteContext } from '../context/UWORouteContext';
 import useCity from '../Hooks/useCity';
 
-type CityProps = {
-  citys: number[];
+type RouteType = {
+  id?: string;
+  user_id?: string;
+  title?: string;
+  description?: string;
+  citys?: number[];
   major_goods?: string[];
   major_chk?: boolean;
-  index: number;
-  cityNm: string;
-  isEditable?: boolean;
-  coordinates: [number, number];
-  onDelete: (index: number) => void;
 };
 
-export default function City({ citys, major_goods, major_chk, index, cityNm, coordinates, isEditable = true, onDelete }: CityProps) {
-  const { setCoordinates } = useCoordinatesContext();
+type MarkerType = {
+  city_id: number;
+  city_nm: string;
+  city_coordinates: [number, number];
+};
+
+type CityType = {
+  index: number;
+  route: RouteType;
+  city: MarkerType;
+};
+
+export default function City({ route, index, city }: CityType) {
+  const { citys, setCitys, setCoordinates, editable } = useUWORouteContext();
+
   const {
     goodsQuery: { isLoading, data: goods },
   } = useCity(citys[index]);
@@ -24,13 +35,11 @@ export default function City({ citys, major_goods, major_chk, index, cityNm, coo
   } = useCity(citys[index + 1]);
 
   const nextItems = nextGoods && nextGoods.map((nextgood) => nextgood.goods_nm);
-  const handleDelete = () => onDelete(index);
 
+  const handleDelete = (delIndex: number): void => setCitys(citys.filter((city, index) => index !== delIndex));
   const handleClick = (coordinates) => setCoordinates(coordinates);
-  useEffect(() => {
-    index === 0 && setCoordinates(coordinates);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
+  const isShow = !route || (route && !route.major_chk);
 
   return (
     <section>
@@ -43,14 +52,13 @@ export default function City({ citys, major_goods, major_chk, index, cityNm, coo
             </th>
             <th rowSpan={2}>
               <div className='flex flex-col justify-center items-center w-24'>
-                <button onClick={() => handleClick(coordinates)}>{cityNm}</button>
-
-                {isEditable && <BsFillTrashFill className='cursor-pointer opacity-50 hover:opacity-100' onClick={handleDelete} />}
+                <button onClick={() => handleClick(city.city_coordinates)}>{city.city_nm}</button>
+                {editable && <BsFillTrashFill className='cursor-pointer opacity-50 hover:opacity-100' onClick={() => handleDelete(index)} />}
               </div>
             </th>
             {goods &&
               goods
-                .filter((good) => !major_chk || !major_goods || (major_chk && major_goods && major_goods.includes(good.goods_nm)))
+                .filter((good) => editable || isShow || (route.major_chk && route.major_goods.includes(good.goods_nm)))
                 .map((good, index) => (
                   <td key={index} className={'border-solid border-2 w-30 ' + (good.specialty ? 'bg-yellow-200' : '')}>
                     <img className='m-auto' src={good.goods_url} alt='' />
@@ -60,10 +68,10 @@ export default function City({ citys, major_goods, major_chk, index, cityNm, coo
           <tr>
             {goods &&
               goods
-                .filter((good) => !major_chk || !major_goods || (major_chk && major_goods && major_goods.includes(good.goods_nm)))
+                .filter((good) => editable || isShow || (route.major_chk && route.major_goods.includes(good.goods_nm)))
                 .map((good, index) => (
                   <td key={index} className='border-solid border-2 text-center text-xs'>
-                    <span className={!major_chk && nextItems && nextItems.includes(good.goods_nm) ? 'text-red-600' : ''}>{good.goods_nm}</span>
+                    <span className={isShow && nextItems && nextItems.includes(good.goods_nm) ? 'text-red-600' : ''}>{good.goods_nm}</span>
                   </td>
                 ))}
           </tr>
