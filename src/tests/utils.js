@@ -1,20 +1,19 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter, Routes } from 'react-router-dom';
-import UWORouteContextProvider from '../context/UWORouteContextProvider';
+import { RouteHooksContext } from '../context/RouteHooksContext';
 export function withRouter(routes, initialEntry = '/') {
   return <MemoryRouter initialEntry={[initialEntry]}>
     <Routes>{routes}</Routes>
   </MemoryRouter>
 }
 
-export function withAllContexts(children) {
+export function withAllContexts(children, useCity) {
   const testClient = createTestQueryClient();
   return (
-    <QueryClientProvider client={testClient}>
-      <UWORouteContextProvider>
-        {children}
-      </UWORouteContextProvider>
-    </QueryClientProvider>
+    <RouteHooksContext.Provider value={{ useCity }}>
+      <QueryClientProvider client={testClient}>{children}</QueryClientProvider>
+    </RouteHooksContext.Provider>
+
   )
 }
 

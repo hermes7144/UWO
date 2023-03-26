@@ -5,7 +5,7 @@ type ContextProviderProps = {
   children: React.ReactNode;
 };
 
-export default function UWORouteContextProvider({ children }: ContextProviderProps) {
+export default function UWORouteProvider({ children }: ContextProviderProps) {
   const [citys, setCitys] = useState<number[]>([]);
   const [coordinates, setCoordinates] = useState<[number, number] | null>(null);
   const [editable, setEditable] = useState<boolean>(false);

@@ -1,6 +1,6 @@
 import { BsFillTrashFill } from 'react-icons/bs';
+import { useRouteHooksContext } from '../context/RouteHooksContext';
 import { useUWORouteContext } from '../context/UWORouteContext';
-import useCity from '../Hooks/useCity';
 
 type RouteType = {
   id?: string;
@@ -25,6 +25,9 @@ type CityType = {
 };
 
 export default function City({ route, index, city }: CityType) {
+  const { useCity } = useRouteHooksContext();
+  console.log(useCity);
+
   const { citys, setCitys, setCoordinates, editable } = useUWORouteContext();
 
   const {
