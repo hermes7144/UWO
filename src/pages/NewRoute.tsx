@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Button from '../components/ui/Button';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useRoute from '../Hooks/useRoute';
 import { useAuthContext } from '../context/AuthContext';
 import Map from '../components/Map';
