@@ -18,9 +18,8 @@ export default function RouteCard({ route }: RouteType) {
       className='round-lg shadow-lg overflow-hidden cursor-pointer hover:scale-105'
       onClick={() => {
         navigate(`/routes/${route.id}`);
-      }}
-    >
-      <div className='mt-1 px-1 text-xl flex justify-between'>
+      }}>
+      <div className='mt-1 px-1 text-xl overflow-hidden overflow-ellipsis whitespace-nowrap'>
         <span>{route.title}</span>
       </div>
     </li>
