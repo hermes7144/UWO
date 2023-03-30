@@ -6,6 +6,7 @@ import { useAuthContext } from '../context/AuthContext';
 export default function Navbar() {
   const { user, login, logout } = useAuthContext();
 
+  console.log(user, login, logout);
   return (
     <header className='flex justify-between border-b border-gray-300 p-2'>
       <Link to='/' className='flex items-center text-xl font-bold text-brand'>

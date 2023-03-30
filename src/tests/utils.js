@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter, Routes } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 import { RouteHooksContext } from '../context/RouteHooksContext';
 import UWORouteProvider from '../context/UWORouteProvider';
 
@@ -20,6 +21,17 @@ export function withAllContexts(children, useRoute) {
 
   )
 }
+
+export function withAuthContexts(children, useAuth) {
+  const testClient = createTestQueryClient();
+  return (
+    <AuthContext.Provider value={{ useAuth }}>
+      <QueryClientProvider client={testClient}>{children}</QueryClientProvider>
+    </AuthContext.Provider >
+
+  )
+}
+
 
 function createTestQueryClient() {
   return new QueryClient({
