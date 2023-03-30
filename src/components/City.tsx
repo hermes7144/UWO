@@ -25,22 +25,23 @@ type CityType = {
 };
 
 export default function City({ route, index, city }: CityType) {
-  const { useCity } = useRouteHooksContext();
-  console.log(useCity);
+  const { useRoute } = useRouteHooksContext();
 
   const { citys, setCitys, setCoordinates, editable } = useUWORouteContext();
 
   const {
     goodsQuery: { isLoading, data: goods },
-  } = useCity(citys[index]);
+  } = useRoute(citys[index]);
+
   const {
     goodsQuery: { data: nextGoods },
-  } = useCity(citys[index + 1]);
+  } = useRoute(citys[index + 1]);
 
   const nextItems = nextGoods && nextGoods.map((nextgood) => nextgood.goods_nm);
 
-  const handleDelete = (delIndex: number): void => setCitys(citys.filter((city, index) => index !== delIndex));
   const handleClick = (coordinates) => setCoordinates(coordinates);
+
+  const handleDelete = (delIndex: number): void => setCitys(citys.filter((city, index) => index !== delIndex));
 
   const isShow = !route || (route && !route.major_chk);
 

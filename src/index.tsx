@@ -7,7 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import AllRoutes from './pages/AllRoutes';
-import RouteDetail from './pages/RouteDetail';
+import RouteDetailWrapper from './pages/RouteDetailWrapper';
 import ProtectedRoute from './pages/ProtectedRoute';
 import NewRoute from './pages/NewRoute';
 
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
         ),
       },
       { path: '/routes', element: <AllRoutes /> },
-      { path: '/routes/:id', element: <RouteDetail /> },
+      { path: '/routes/:id', element: <RouteDetailWrapper /> },
       {
         path: '/routes/new',
         element: (
@@ -51,3 +51,4 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+

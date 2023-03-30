@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RouteForm renders correctly 1`] = `
+<DocumentFragment>
+  <form
+    class="flex flex-col px-12 font-semibold"
+  >
+    <input
+      name="title"
+      placeholder="제목"
+      required=""
+      value=""
+    />
+    <textarea
+      class="resize-none border border-gray-300 px-2 py-2 focus:outline-none my-2"
+      name="description"
+      placeholder=" 설명"
+      rows="5"
+    />
+    <div
+      class="flex justify-between items-center"
+    >
+      <input
+        class="w-11/12"
+        name="major_goods"
+        placeholder="주요교역품"
+        value=""
+      />
+      <input
+        class="w-4 h-4 mx-3"
+        name="major_chk"
+        type="checkbox"
+      />
+    </div>
+    <button
+      class="bg-brand text-white
+ py-2 px-4 rounded-sm hover:brightness-110"
+    >
+      Save
+    </button>
+  </form>
+</DocumentFragment>
+`;

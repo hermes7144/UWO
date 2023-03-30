@@ -1,5 +1,5 @@
 
-export const fakeCitys = [
+export const fakeMarkers = [
   {
     "city_id": 1,
     "city_nm": "리스보아",
@@ -466,23 +466,23 @@ export const fakeGoods = [
   {
     "goods_nm": "브랜디",
     "goods_url": "http://res.cloudinary.com/da25q6n7o/image/upload/v1678705707/prido8t3x7zzvpmomtoh.png",
-    "goods_city": "리스보아",
+    "goods_city": "test city",
     "goods_cat": "주류",
     "specialty": false,
     "goods_up_season1": "겨울",
     "goods_up_season2": "건기",
-    "goods_down_season2": "여름",
-    "goods_down_season2__1": "우기"
+    "goods_down_season1": "여름",
+    "goods_down_season2": "우기"
   },
   {
     "goods_nm": "아몬드",
     "goods_url": "http://res.cloudinary.com/da25q6n7o/image/upload/v1678706021/ln48swpjtphyvymib58z.png",
-    "goods_city": "리스보아",
+    "goods_city": "test city",
     "goods_cat": "기호품",
     "specialty": true,
     "goods_up_season1": "가을",
     "goods_up_season2": "건기",
-    "goods_down_season2": "봄",
-    "goods_down_season2__1": "우기"
+    "goods_down_season1": "봄",
+    "goods_down_season2": "우기"
   }
 ];

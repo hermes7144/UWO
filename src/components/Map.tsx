@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup, Marker } from 'react-simple-maps';
+import { useRouteHooksContext } from '../context/RouteHooksContext';
 import { useUWORouteContext } from '../context/UWORouteContext';
-import useRoute from '../Hooks/useRoute';
-import useCity from '../Hooks/useCity';
 const geoUrl = process.env.PUBLIC_URL + '/maps/land-50m.json';
 
 export default function Map() {
+  const { useCity } = useRouteHooksContext();
+
   const { citys, setCitys, coordinates, setCoordinates, editable } = useUWORouteContext();
   const {
     routeQuery: { data: route },
-  } = useRoute();
+  } = useCity();
   const {
     markersQuery: { isLoading, data: markers },
   } = useCity(null);

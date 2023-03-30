@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react';
 
 interface IUWORouteContext {
-  useCity: any;
+  useRoute: any;
 }
 
 export const RouteHooksContext = createContext<IUWORouteContext | null>(null);

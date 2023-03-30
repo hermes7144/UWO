@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`City renders correctly 1`] = `
+<DocumentFragment>
+  <section>
+    <table
+      class="border-solid border-2 my-2"
+    >
+      <tbody>
+        <tr>
+          <th
+            class="border-solid border-2 w-6"
+            rowspan="2"
+          >
+            1
+          </th>
+          <th
+            rowspan="2"
+          >
+            <div
+              class="flex flex-col justify-center items-center w-24"
+            >
+              <button>
+                test city
+              </button>
+            </div>
+          </th>
+          <td
+            class="border-solid border-2 w-30 "
+          >
+            <img
+              alt=""
+              class="m-auto"
+              src="http://res.cloudinary.com/da25q6n7o/image/upload/v1678705707/prido8t3x7zzvpmomtoh.png"
+            />
+          </td>
+          <td
+            class="border-solid border-2 w-30 bg-yellow-200"
+          >
+            <img
+              alt=""
+              class="m-auto"
+              src="http://res.cloudinary.com/da25q6n7o/image/upload/v1678706021/ln48swpjtphyvymib58z.png"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td
+            class="border-solid border-2 text-center text-xs"
+          >
+            <span
+              class="text-red-600"
+            >
+              브랜디
+            </span>
+          </td>
+          <td
+            class="border-solid border-2 text-center text-xs"
+          >
+            <span
+              class="text-red-600"
+            >
+              아몬드
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</DocumentFragment>
+`;

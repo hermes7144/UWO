@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Routes renders correctly 1`] = `
+<DocumentFragment>
+  <ul
+    class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4"
+  >
+    <li
+      class="round-lg shadow-lg overflow-hidden cursor-pointer hover:scale-105"
+    >
+      <div
+        class="mt-1 px-1 text-xl overflow-hidden overflow-ellipsis whitespace-nowrap"
+      >
+        <span>
+          title1
+        </span>
+      </div>
+    </li>
+    <li
+      class="round-lg shadow-lg overflow-hidden cursor-pointer hover:scale-105"
+    >
+      <div
+        class="mt-1 px-1 text-xl overflow-hidden overflow-ellipsis whitespace-nowrap"
+      >
+        <span>
+          title2
+        </span>
+      </div>
+    </li>
+  </ul>
+</DocumentFragment>
+`;

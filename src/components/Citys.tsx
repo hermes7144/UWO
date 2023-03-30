@@ -1,7 +1,8 @@
 import React from 'react';
 import City from './City';
-import useCity from '../Hooks/useCity';
 import { useUWORouteContext } from '../context/UWORouteContext';
+import { useRouteHooksContext } from '../context/RouteHooksContext';
+import useRoute from '../Hooks/useRoute';
 
 type RouteType = {
   id?: string;
@@ -18,9 +19,11 @@ type CityType = {
 };
 
 export default function Citys({ route }: CityType) {
+  const { useRoute } = useRouteHooksContext();
+
   const {
     markersQuery: { data: markers },
-  } = useCity(null);
+  } = useRoute(null);
 
   const { citys } = useUWORouteContext();
 

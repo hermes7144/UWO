@@ -1,10 +1,10 @@
 import React from 'react';
 import { RouteHooksContext } from './RouteHooksContext';
-import useCity from '../Hooks/useCity';
+import useRoute from '../Hooks/useRoute';
 type ContextProviderProps = {
   children: React.ReactNode;
 };
 
 export default function RouteHooksProvider({ children }: ContextProviderProps) {
-  return <RouteHooksContext.Provider value={{ useCity }}>{children}</RouteHooksContext.Provider>;
+  return <RouteHooksContext.Provider value={{ useRoute }}>{children}</RouteHooksContext.Provider>;
 }
