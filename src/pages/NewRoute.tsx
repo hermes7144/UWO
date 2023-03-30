@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
 import Button from '../components/ui/Button';
 import { useNavigate } from 'react-router-dom';
-import useRoute from '../Hooks/useRoute';
 import { useAuthContext } from '../context/AuthContext';
 import Map from '../components/Map';
 import Citys from '../components/Citys';
 import RouteForm from '../components/RouteForm';
 import { useUWORouteContext } from '../context/UWORouteContext';
+import { useRouteHooksContext } from '../context/RouteHooksContext';
 
 export default function NewRoute() {
+  const { useRoute } = useRouteHooksContext();
   const { setEditable, setCitys } = useUWORouteContext();
   const { uid } = useAuthContext();
 

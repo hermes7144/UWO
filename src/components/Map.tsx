@@ -5,15 +5,15 @@ import { useUWORouteContext } from '../context/UWORouteContext';
 const geoUrl = process.env.PUBLIC_URL + '/maps/land-50m.json';
 
 export default function Map() {
-  const { useCity } = useRouteHooksContext();
+  const { useRoute } = useRouteHooksContext();
 
   const { citys, setCitys, coordinates, setCoordinates, editable } = useUWORouteContext();
   const {
     routeQuery: { data: route },
-  } = useCity();
+  } = useRoute();
   const {
     markersQuery: { isLoading, data: markers },
-  } = useCity(null);
+  } = useRoute(null);
 
   useEffect(() => {
     route && setCitys(route.citys);

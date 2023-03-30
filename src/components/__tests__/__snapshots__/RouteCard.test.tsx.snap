@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RouteCard renders correctly 1`] = `
+<DocumentFragment>
+  <li
+    class="round-lg shadow-lg overflow-hidden cursor-pointer hover:scale-105"
+  >
+    <div
+      class="mt-1 px-1 text-xl overflow-hidden overflow-ellipsis whitespace-nowrap"
+    >
+      <span>
+        title
+      </span>
+    </div>
+  </li>
+</DocumentFragment>
+`;

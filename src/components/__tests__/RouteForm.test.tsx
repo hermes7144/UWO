@@ -12,15 +12,20 @@ describe('RouteForm', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('type route information', () => {
-    const searchKeyword = 'title';
+  it('type route information', async () => {
+    const handleSubmit = jest.fn();
+    handleSubmit.mockImplementation(() => true);
+
     renderRouteForm();
 
+    const searchKeyword = '제목입니다';
     const title = screen.getByPlaceholderText('제목');
+    await userEvent.type(title, searchKeyword);
+    expect(screen.getByDisplayValue('제목입니다')).toBeInTheDocument();
 
-    userEvent.type(title, searchKeyword);
-
-    expect(screen.getByText('title')).toBeInTheDocument();
+    const checkBox = screen.getByRole('checkbox');
+    await userEvent.click(checkBox);
+    expect(checkBox).toBeChecked();
   });
 
   function renderRouteForm() {

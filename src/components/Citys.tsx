@@ -2,7 +2,6 @@ import React from 'react';
 import City from './City';
 import { useUWORouteContext } from '../context/UWORouteContext';
 import { useRouteHooksContext } from '../context/RouteHooksContext';
-import useRoute from '../Hooks/useRoute';
 
 type RouteType = {
   id?: string;
