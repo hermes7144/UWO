@@ -36,7 +36,7 @@ export default function NewRoute() {
   };
 
   return (
-    <div className='flex flex-col sm:flex-row'>
+    <div className='flex flex-col sm:flex-row p-2'>
       <div className='basis-4/6'>
         <Map />
       </div>

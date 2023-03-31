@@ -92,7 +92,7 @@ export default function RouteForm() {
           {countries && countries.map((option, index) => <option key={index}>{option}</option>)}
         </select>
         <label className='text-brand font-bold' htmlFor='select'>
-          구역:
+          지역:
         </label>
         <select className='p-1 m-1 flex-1 border-2 border-dashed border-brand outline-none' onChange={handleRegion} value={region}>
           {regions && regions.map((option, index) => <option key={index}>{option}</option>)}

@@ -3,7 +3,7 @@
 exports[`RouteForm renders correctly 1`] = `
 <DocumentFragment>
   <form
-    class="flex flex-col px-12 font-semibold"
+    class="flex flex-col px-1 font-semibold"
   >
     <input
       name="title"
@@ -33,19 +33,35 @@ exports[`RouteForm renders correctly 1`] = `
       />
     </div>
     <div
-      class="flex justify-around items-center"
+      class="flex  items-center"
     >
       <label
         class="text-brand font-bold"
         for="select"
       >
-        구역:
+        국가:
       </label>
       <select
-        class="p-2 m-4 flex-1 border-2 border-dashed border-brand outline-none"
+        class="p-1 m-1 flex-1 border-2 border-dashed border-brand outline-none"
       >
         <option>
-          전체
+          공통
+        </option>
+        <option>
+          오스만
+        </option>
+      </select>
+      <label
+        class="text-brand font-bold"
+        for="select"
+      >
+        지역:
+      </label>
+      <select
+        class="p-1 m-1 flex-1 border-2 border-dashed border-brand outline-none"
+      >
+        <option>
+          공통
         </option>
         <option>
           유럽
@@ -58,10 +74,10 @@ exports[`RouteForm renders correctly 1`] = `
         class="text-brand font-bold"
         for="select"
       >
-        시작월:
+        월:
       </label>
       <select
-        class="p-2 m-4 flex-1 border-2 border-dashed border-brand outline-none"
+        class="p-1 m-1 flex-1 border-2 border-dashed border-brand outline-none"
       >
         <option>
           1
@@ -100,14 +116,9 @@ exports[`RouteForm renders correctly 1`] = `
           12
         </option>
       </select>
-      <label
-        class="text-brand font-bold"
-        for="select"
-      >
-        종료월:
-      </label>
+      ~
       <select
-        class="p-2 m-4 flex-1 border-2 border-dashed border-brand outline-none"
+        class="p-1 m-1 flex-1 border-2 border-dashed border-brand outline-none"
       >
         <option>
           1
