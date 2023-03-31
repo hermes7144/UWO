@@ -1,0 +1,35 @@
+import { render, screen } from '@testing-library/react';
+import Navbar from '../Navbar';
+import { withAuthContexts, withRouter } from '../../tests/utils';
+import { Route } from 'react-router-dom';
+
+describe('Navbar', () => {
+  const fakeUser = { user: jest.fn() };
+
+  afterEach(() => {
+    fakeUser.user.mockReset();
+  });
+
+  const tempData = { displayName: 'test' };
+  test('renders user is empty', () => {
+    fakeUser.user.mockImplementation(() => null);
+
+    renderNavbar();
+
+    const navbarElement = screen.getByText('Login');
+    expect(navbarElement).toBeInTheDocument();
+  });
+
+  test('renders user login', () => {
+    fakeUser.user.mockImplementation(() => tempData);
+
+    renderNavbar();
+
+    const navbarElement = screen.getByText('Logout');
+    expect(navbarElement).toBeInTheDocument();
+  });
+
+  function renderNavbar() {
+    return render(withAuthContexts(withRouter(<Route path='/' element={<Navbar />} />), fakeUser));
+  }
+});

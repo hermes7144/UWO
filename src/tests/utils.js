@@ -14,7 +14,7 @@ export function withAllContexts(children, useRoute) {
   const testClient = createTestQueryClient();
   return (
     <RouteHooksContext.Provider value={{ useRoute }}>
-      <UWORouteProvider>
+      <UWORouteProvider value={{ editable: true }}>
         <QueryClientProvider client={testClient}>{children}</QueryClientProvider>
       </UWORouteProvider>
     </RouteHooksContext.Provider>
@@ -22,13 +22,13 @@ export function withAllContexts(children, useRoute) {
   )
 }
 
-export function withAuthContexts(children, useAuth) {
+export function withAuthContexts(children, user) {
   const testClient = createTestQueryClient();
+
   return (
-    <AuthContext.Provider value={{ useAuth }}>
+    <AuthContext.Provider value={{ user }}>
       <QueryClientProvider client={testClient}>{children}</QueryClientProvider>
     </AuthContext.Provider >
-
   )
 }
 

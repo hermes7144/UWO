@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar renders user is empty 1`] = `
+<DocumentFragment>
+  <header
+    class="flex justify-between border-b border-gray-300 p-2"
+  >
+    <a
+      class="flex items-center text-xl font-bold text-brand"
+      href="/"
+    >
+      <h1>
+        UWO TOOL
+      </h1>
+    </a>
+    <nav
+      class="flex items-center gap-4 font-semibold"
+    >
+      <a
+        href="/routes"
+      >
+        <h2>
+          무역 루트
+        </h2>
+      </a>
+      <div
+        class="flex items-center shrink-0"
+      >
+        <img
+          alt="test"
+          class="w-10 h-10 rounded-full mr-2"
+        />
+        <span
+          class="hidden md:block"
+        >
+          test
+        </span>
+      </div>
+      <button
+        class="bg-brand text-white
+ py-2 px-4 rounded-sm hover:brightness-110"
+      >
+        Logout
+      </button>
+    </nav>
+  </header>
+</DocumentFragment>
+`;
