@@ -16,10 +16,13 @@ exports[`Routes renders correctly 1`] = `
         width="5%"
       />
       <col
-        width="75%"
+        width="50%"
       />
       <col
-        width="6%"
+        width="10%"
+      />
+      <col
+        width="10%"
       />
     </colgroup>
     <thead
@@ -27,34 +30,40 @@ exports[`Routes renders correctly 1`] = `
     >
       <tr>
         <th
-          class="px-6 py-4"
+          class="px-1 py-4"
           scope="col"
         >
           국가
         </th>
         <th
-          class="px-6 py-4"
+          class="px-1 py-4"
           scope="col"
         >
           지역
         </th>
         <th
-          class="px-6 py-4"
+          class="px-1 py-4"
           scope="col"
         >
           기간
         </th>
         <th
-          class="px-6 py-4"
+          class="px-1 py-4"
           scope="col"
         >
           제목
         </th>
         <th
-          class="px-6 py-4"
+          class="px-1 py-4"
           scope="col"
         >
           작성일
+        </th>
+        <th
+          class="px-1 py-4"
+          scope="col"
+        >
+          추천
         </th>
       </tr>
     </thead>
@@ -63,18 +72,19 @@ exports[`Routes renders correctly 1`] = `
         class="border-b dark:border-neutral-500"
       >
         <td
-          class="whitespace-nowrap px-3 py-2"
+          class="whitespace-nowrap px-1 py-2"
         />
         <td
-          class="whitespace-nowrap px-3 py-2"
+          class="whitespace-nowrap px-1 py-2"
         />
         <td
-          class="whitespace-nowrap px-3 py-2"
+          class="whitespace-nowrap px-1 py-2"
         >
-           ~ 
+           ~ 월
         </td>
         <td
-          class="whitespace-nowrap overflow-hidden overflow-ellipsis px-6 py-4 text-left"
+          class=" overflow-hidden px-2 py-4 text-left text-ellipsis whitespace-nowrap"
+          style="max-width: 250px;"
         >
           <span
             class="cursor-pointer hover:underline"
@@ -83,29 +93,33 @@ exports[`Routes renders correctly 1`] = `
           </span>
         </td>
         <td
-          class="whitespace-nowrap py-2"
+          class="whitespace-nowrap px-2 py-2"
         >
-          27/03/23
+          23/03/27
+        </td>
+        <td
+          class="whitespace-nowrap  px-2 py-2"
+        >
+          0
         </td>
       </tr>
-    </tbody>
-    <tbody>
       <tr
         class="border-b dark:border-neutral-500"
       >
         <td
-          class="whitespace-nowrap px-3 py-2"
+          class="whitespace-nowrap px-1 py-2"
         />
         <td
-          class="whitespace-nowrap px-3 py-2"
+          class="whitespace-nowrap px-1 py-2"
         />
         <td
-          class="whitespace-nowrap px-3 py-2"
+          class="whitespace-nowrap px-1 py-2"
         >
-           ~ 
+           ~ 월
         </td>
         <td
-          class="whitespace-nowrap overflow-hidden overflow-ellipsis px-6 py-4 text-left"
+          class=" overflow-hidden px-2 py-4 text-left text-ellipsis whitespace-nowrap"
+          style="max-width: 250px;"
         >
           <span
             class="cursor-pointer hover:underline"
@@ -114,9 +128,14 @@ exports[`Routes renders correctly 1`] = `
           </span>
         </td>
         <td
-          class="whitespace-nowrap py-2"
+          class="whitespace-nowrap px-2 py-2"
         >
-          27/03/23
+          23/03/27
+        </td>
+        <td
+          class="whitespace-nowrap  px-2 py-2"
+        >
+          0
         </td>
       </tr>
     </tbody>

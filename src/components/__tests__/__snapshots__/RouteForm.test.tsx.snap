@@ -6,6 +6,7 @@ exports[`RouteForm renders correctly 1`] = `
     class="flex flex-col px-1 font-semibold"
   >
     <input
+      maxlength="50"
       name="title"
       placeholder="제목"
       required=""
@@ -42,7 +43,7 @@ exports[`RouteForm renders correctly 1`] = `
         국가:
       </label>
       <select
-        class="p-1 m-1 flex-1 border-2 border-dashed border-brand outline-none"
+        class="p-1 m-1 flex-1 border-2 outline-none"
       >
         <option>
           공통
@@ -58,7 +59,7 @@ exports[`RouteForm renders correctly 1`] = `
         지역:
       </label>
       <select
-        class="p-1 m-1 flex-1 border-2 border-dashed border-brand outline-none"
+        class="p-1 m-1 flex-1 border-2 outline-none"
       >
         <option>
           공통
@@ -77,7 +78,7 @@ exports[`RouteForm renders correctly 1`] = `
         월:
       </label>
       <select
-        class="p-1 m-1 flex-1 border-2 border-dashed border-brand outline-none"
+        class="p-1 m-1 flex-1 border-2  outline-none"
       >
         <option>
           1
@@ -118,7 +119,7 @@ exports[`RouteForm renders correctly 1`] = `
       </select>
       ~
       <select
-        class="p-1 m-1 flex-1 border-2 border-dashed border-brand outline-none"
+        class="p-1 m-1 flex-1 border-2 outline-none"
       >
         <option>
           1
