@@ -17,7 +17,7 @@ describe('City', () => {
 
   afterEach(() => fakeUseCity.mockReset());
 
-  it('renders correctly', async () => {
+  it('renders correctlyd', async () => {
     const { asFragment } = renderCity();
 
     await screen.findAllByText('아몬드');

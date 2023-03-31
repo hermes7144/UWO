@@ -10,25 +10,18 @@ export function withRouter(routes, initialEntry = '/') {
   </MemoryRouter>
 }
 
-export function withAllContexts(children, useRoute) {
+export function withAllContexts(children, useRoute, user = null) {
   const testClient = createTestQueryClient();
   return (
-    <RouteHooksContext.Provider value={{ useRoute }}>
-      <UWORouteProvider value={{ editable: true }}>
-        <QueryClientProvider client={testClient}>{children}</QueryClientProvider>
-      </UWORouteProvider>
-    </RouteHooksContext.Provider>
-
-  )
-}
-
-export function withAuthContexts(children, user) {
-  const testClient = createTestQueryClient();
-
-  return (
-    <AuthContext.Provider value={{ user }}>
-      <QueryClientProvider client={testClient}>{children}</QueryClientProvider>
+    <AuthContext.Provider value={{ user, uid: 'uid' }}>
+      <RouteHooksContext.Provider value={{ useRoute }}>
+        <UWORouteProvider>
+          <QueryClientProvider client={testClient}>{children}</QueryClientProvider>
+        </UWORouteProvider>
+      </RouteHooksContext.Provider>
     </AuthContext.Provider >
+
+
   )
 }
 

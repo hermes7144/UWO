@@ -12,7 +12,7 @@ describe('RouteForm', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('type route information', async () => {
+  it('submit route', async () => {
     const handleSubmit = jest.fn();
     handleSubmit.mockImplementation(() => true);
 

@@ -12,9 +12,9 @@ type RouteType = {
 };
 
 export default function RouteForm() {
-  const {
-    useRoute: { addOrUpdateItem },
-  } = useRouteHooksContext();
+  const { useRoute } = useRouteHooksContext();
+  const { addOrUpdateItem } = useRoute();
+
   const { citys } = useUWORouteContext();
   const { state } = useLocation();
   const [route, setRoute] = useState<RouteType>({});

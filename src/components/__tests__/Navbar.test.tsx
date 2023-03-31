@@ -1,10 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import Navbar from '../Navbar';
-import { withAuthContexts, withRouter } from '../../tests/utils';
+import { withAllContexts, withRouter } from '../../tests/utils';
 import { Route } from 'react-router-dom';
 
 describe('Navbar', () => {
-  let user = null;
+  const fakeUseRoute = jest.fn();
+
+  let user;
   afterEach(() => {
     user = null;
   });
@@ -24,6 +26,6 @@ describe('Navbar', () => {
   });
 
   function renderNavbar() {
-    return render(withAuthContexts(withRouter(<Route path='/' element={<Navbar />} />), user));
+    return render(withAllContexts(withRouter(<Route path='/' element={<Navbar />} />), fakeUseRoute, user));
   }
 });
