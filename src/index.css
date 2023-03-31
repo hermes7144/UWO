@@ -16,7 +16,7 @@ code {
 }
 
 #root {
-  @apply w-full;
+  @apply w-full max-w-screen-2xl;
 }
 
 label {
@@ -30,3 +30,4 @@ input {
 button + button {
   margin-left: 5px;
 }
+

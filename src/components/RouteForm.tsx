@@ -4,42 +4,60 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useUWORouteContext } from '../context/UWORouteContext';
 import { useRouteHooksContext } from '../context/RouteHooksContext';
 type RouteType = {
-  id?: string;
   title?: string;
   description?: string;
   major_goods?: string;
   major_chk?: boolean;
 };
 
+const regions = ['공통', '유럽', '카리브해'];
+const countries = ['공통', '오스만'];
+const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
 export default function RouteForm() {
   const { useRoute } = useRouteHooksContext();
   const { addOrUpdateItem } = useRoute();
-
   const { citys } = useUWORouteContext();
   const { state } = useLocation();
-  const [route, setRoute] = useState<RouteType>({});
-  const [success, setSuccess] = useState('');
   const navigate = useNavigate();
 
+  const [route, setRoute] = useState<RouteType>({
+    title: '',
+    description: '',
+    major_goods: '',
+    major_chk: false,
+  });
+
+  const [country, setCountry] = useState(countries[0]);
+  const [region, setRegion] = useState(regions[0]);
+  const [startMonth, setStartMonth] = useState(months[0]);
+  const [endMonth, setEndMonth] = useState(months[months.length - 1]);
+  const [success, setSuccess] = useState('');
+
   useEffect(() => {
-    state && setRoute(state.route);
+    if (state) {
+      setRoute(state.route);
+      setRegion(state.route.region);
+      setStartMonth(state.route.startMonth);
+      setEndMonth(state.route.endMonth);
+      setEndMonth(state.route.endMonth);
+    }
   }, [state]);
 
   const handleChange = (e) => {
     const { name, value, checked } = e.target;
-    if (name === 'major_chk') {
-      const major_chk = checked ? true : false;
-      setRoute((route) => ({ ...route, major_chk }));
-    } else {
-      setRoute((route) => ({ ...route, [name]: value }));
-    }
+    setRoute((prevState) => ({
+      ...prevState,
+      [name]: name === 'major_chk' ? checked : value,
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setRoute((route) => ({ ...route, major_goods: String(route.major_goods).replaceAll(' ', '') }));
+
     addOrUpdateItem.mutate(
-      { citys, route },
+      { route, country, region, startMonth, endMonth, citys },
       {
         onSuccess: () => {
           setSuccess('성공적으로 경로가 추가되었습니다.');
@@ -51,14 +69,44 @@ export default function RouteForm() {
       }
     );
   };
+
+  const handleCountry = (e) => setCountry(e.target.value);
+  const handleRegion = (e) => setRegion(e.target.value);
+  const handleStartMonth = (e) => setStartMonth(e.target.value);
+  const handleEndMonth = (e) => setEndMonth(e.target.value);
+
   return (
-    <form className='flex flex-col px-12 font-semibold' onSubmit={handleSubmit}>
+    <form className='flex flex-col px-1 font-semibold' onSubmit={handleSubmit}>
       {success && <p className='my-2'>✔️{success}</p>}
       <input name='title' value={route.title ?? ''} placeholder='제목' required onChange={handleChange} />
       <textarea rows={5} className='resize-none border border-gray-300 px-2 py-2 focus:outline-none my-2' name='description' value={route.description ?? ''} placeholder=' 설명' onChange={handleChange}></textarea>
       <div className='flex justify-between items-center'>
         <input className='w-11/12' name='major_goods' value={route.major_goods || ''} placeholder='주요교역품' onChange={handleChange} />
         <input className='w-4 h-4 mx-3' name='major_chk' type='checkbox' checked={route.major_chk || false} onChange={handleChange} />
+      </div>
+      <div className='flex  items-center'>
+        <label className='text-brand font-bold' htmlFor='select'>
+          국가:
+        </label>
+        <select className='p-1 m-1 flex-1 border-2 border-dashed border-brand outline-none' onChange={handleCountry} value={country}>
+          {countries && countries.map((option, index) => <option key={index}>{option}</option>)}
+        </select>
+        <label className='text-brand font-bold' htmlFor='select'>
+          구역:
+        </label>
+        <select className='p-1 m-1 flex-1 border-2 border-dashed border-brand outline-none' onChange={handleRegion} value={region}>
+          {regions && regions.map((option, index) => <option key={index}>{option}</option>)}
+        </select>
+        <label className='text-brand font-bold' htmlFor='select'>
+          월:
+        </label>
+        <select className='p-1 m-1 flex-1 border-2 border-dashed border-brand outline-none' onChange={handleStartMonth} value={startMonth}>
+          {months && months.map((option, index) => <option key={index}>{option}</option>)}
+        </select>
+        ~
+        <select className='p-1 m-1 flex-1 border-2 border-dashed border-brand outline-none' onChange={handleEndMonth} value={endMonth}>
+          {months && months.map((option, index) => <option key={index}>{option}</option>)}
+        </select>
       </div>
       <Button text={'Save'}></Button>
     </form>

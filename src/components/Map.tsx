@@ -42,7 +42,7 @@ export default function Map() {
           <ZoomableGroup center={coordinates} zoom={7}>
             <Geographies geography={geoUrl}>{({ geographies }) => geographies.map((geo) => <Geography key={geo.rsmKey} geography={geo} fill='#D0AE89' />)}</Geographies>
             {markers.map(({ city_id, city_nm, city_coordinates, markerOffset }) => (
-              <Marker className={!editable ? '' : 'cursor-pointer'} key={city_id} coordinates={city_coordinates} onClick={() => handleClick(city_id)}>
+              <Marker className={!editable ? '' : 'cursor-pointer'} key={city_id} coordinates={city_coordinates} onClick={() => editable && handleClick(city_id)}>
                 <circle r={0.55} fill='#F00' />
                 <text textAnchor='middle' x={-1} y={1} style={{ fontSize: 1, fontWeight: 'bold', fontFamily: 'system-ui' }}>
                   {citys && citys.indexOf(city_id) >= 0 && citys.indexOf(city_id) + 1}

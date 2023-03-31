@@ -5,13 +5,16 @@ import { addOrUpdateRoute, getRoutes, getRoute, removeRoute } from '../api/fireb
 import { useAuthContext } from '../context/AuthContext';
 
 type RouteType = {
-  id?: string;
   route: {
     id: string;
     title: string;
     description?: string;
   };
-  citys: number[];
+  country?: string;
+  region?: string;
+  startMonth?: number;
+  endMonth?: number;
+  citys?: number[];
 };
 
 type RemoveType = {
@@ -30,7 +33,7 @@ export default function useRoute(city_id: number) {
   const routesQuery = useQuery(['routes'], getRoutes, { staleTime: 1000 * 60 });
   const routeQuery = useQuery(['route', id], () => getRoute(id), { enabled: !!id });
 
-  const addOrUpdateItem: UseMutationResult<RouteType> = useMutation(({ route, citys }: RouteType) => addOrUpdateRoute(uid, route, citys), {
+  const addOrUpdateItem: UseMutationResult<RouteType> = useMutation(({ route, country, region, startMonth, endMonth, citys }: RouteType) => addOrUpdateRoute(uid, route, country, region, startMonth, endMonth, citys), {
     onSuccess: () => {
       queryClient.invalidateQueries(['routes']);
       queryClient.invalidateQueries(['route', id]);

@@ -91,19 +91,25 @@ export async function getRoute(id: string): Promise<RouteType2> {
 }
 
 export async function addOrUpdateRoute(
-  userId: string,
+  user_id: string,
   route: {
     id?: string;
     major_goods?: string;
   },
-  citys: number[]
+  country: string,
+  region: string,
+  startMonth: number,
+  endMonth: number,
+  citys?: number[]
 ): Promise<RouteType> {
   const id = route.id ? route.id : uuid();
 
+  console.log(route);
+
   const time = route.id == null ? { createdAt: serverTimestamp() } : { updatedAt: serverTimestamp() };
 
-  set(ref(database, `routes/${id}`), { ...route, user_id: userId, id, ...time });
-  set(ref(database, `routes/${id}/citys`), { ...citys });
+  set(ref(database, `routes/${id}`), { ...route, ...time, user_id, id, country, region, startMonth, endMonth });
+  set(ref(database, `routes/${id}/citys`), citys);
 
   set(
     ref(database, `routes/${id}/major_goods`),
