@@ -11,6 +11,7 @@ export function withRouter(routes, initialEntry = '/') {
 }
 
 export function withAllContexts(children, useRoute, user = null) {
+
   const testClient = createTestQueryClient();
   return (
     <AuthContext.Provider value={{ user, uid: 'uid' }}>

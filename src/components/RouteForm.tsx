@@ -15,6 +15,9 @@ export default function RouteForm() {
   const { useRoute } = useRouteHooksContext();
   const { addOrUpdateItem } = useRoute();
 
+  console.log(addOrUpdateItem);
+  console.log('test');
+
   const { citys } = useUWORouteContext();
   const { state } = useLocation();
   const [route, setRoute] = useState<RouteType>({});
