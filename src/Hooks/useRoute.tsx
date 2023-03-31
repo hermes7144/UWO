@@ -1,7 +1,7 @@
 import { getCitys as fetchCitys, getGoods } from '../api/firebase';
 import { useMutation, UseMutationResult, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import { addOrUpdateRoute, getRoutes, getRoute, removeRoute } from '../api/firebaseTest';
+import { addOrUpdateRoute, getRoutes, getRoute, removeRoute } from '../api/firebase';
 import { useAuthContext } from '../context/AuthContext';
 
 type RouteType = {
