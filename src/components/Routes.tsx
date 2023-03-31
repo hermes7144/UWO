@@ -54,8 +54,8 @@ export default function Routes() {
               </th>
             </tr>
           </thead>
-          {routes.map((route: RouteType) => (
-            <tbody>
+          <tbody>
+            {routes.map((route: RouteType) => (
               <tr key={route.id} className='border-b dark:border-neutral-500'>
                 <td className='whitespace-nowrap px-3 py-2'>{route.country}</td>
                 <td className='whitespace-nowrap px-3 py-2'>{route.region}</td>
@@ -73,8 +73,8 @@ export default function Routes() {
                 </td>
                 <td className='whitespace-nowrap py-2'>{formatDate(route.createdAt)}</td>
               </tr>
-            </tbody>
-          ))}
+            ))}
+          </tbody>
         </table>
       )}
     </>
