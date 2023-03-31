@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useRouteHooksContext } from '../context/RouteHooksContext';
 import { formatDate } from '../utils/date';
-import RouteCard from './RouteCard';
 
 type RouteType = {
   id: string;
