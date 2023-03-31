@@ -16,7 +16,8 @@ code {
 }
 
 #root {
-  @apply w-full max-w-screen-2xl;
+  @apply w-full;
+  max-width: 1800px;
 }
 
 label {

@@ -12,13 +12,13 @@ export default function AllRoutes() {
     navigate('/routes/new');
   };
   return (
-    <>
+    <div className='p-2'>
       {user && (
-        <div className='flex justify-end p-2 font-semibold'>
+        <div className='flex justify-end font-semibold py-2'>
           <Button text={'New'} onClick={handleClick}></Button>
         </div>
       )}
       <Routes />
-    </>
+    </div>
   );
 }

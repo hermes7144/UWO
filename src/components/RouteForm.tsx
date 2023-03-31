@@ -78,7 +78,7 @@ export default function RouteForm() {
   return (
     <form className='flex flex-col px-1 font-semibold' onSubmit={handleSubmit}>
       {success && <p className='my-2'>✔️{success}</p>}
-      <input name='title' value={route.title ?? ''} placeholder='제목' required onChange={handleChange} />
+      <input name='title' value={route.title ?? ''} placeholder='제목' required onChange={handleChange} maxLength={50} />
       <textarea rows={5} className='resize-none border border-gray-300 px-2 py-2 focus:outline-none my-2' name='description' value={route.description ?? ''} placeholder=' 설명' onChange={handleChange}></textarea>
       <div className='flex justify-between items-center'>
         <input className='w-11/12' name='major_goods' value={route.major_goods || ''} placeholder='주요교역품' onChange={handleChange} />
@@ -88,23 +88,23 @@ export default function RouteForm() {
         <label className='text-brand font-bold' htmlFor='select'>
           국가:
         </label>
-        <select className='p-1 m-1 flex-1 border-2 border-dashed border-brand outline-none' onChange={handleCountry} value={country}>
+        <select className='p-1 m-1 flex-1 border-2 outline-none' onChange={handleCountry} value={country}>
           {countries && countries.map((option, index) => <option key={index}>{option}</option>)}
         </select>
         <label className='text-brand font-bold' htmlFor='select'>
           지역:
         </label>
-        <select className='p-1 m-1 flex-1 border-2 border-dashed border-brand outline-none' onChange={handleRegion} value={region}>
+        <select className='p-1 m-1 flex-1 border-2 outline-none' onChange={handleRegion} value={region}>
           {regions && regions.map((option, index) => <option key={index}>{option}</option>)}
         </select>
         <label className='text-brand font-bold' htmlFor='select'>
           월:
         </label>
-        <select className='p-1 m-1 flex-1 border-2 border-dashed border-brand outline-none' onChange={handleStartMonth} value={startMonth}>
+        <select className='p-1 m-1 flex-1 border-2  outline-none' onChange={handleStartMonth} value={startMonth}>
           {months && months.map((option, index) => <option key={index}>{option}</option>)}
         </select>
         ~
-        <select className='p-1 m-1 flex-1 border-2 border-dashed border-brand outline-none' onChange={handleEndMonth} value={endMonth}>
+        <select className='p-1 m-1 flex-1 border-2 outline-none' onChange={handleEndMonth} value={endMonth}>
           {months && months.map((option, index) => <option key={index}>{option}</option>)}
         </select>
       </div>
