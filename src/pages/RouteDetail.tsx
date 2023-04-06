@@ -23,21 +23,40 @@ export default function RouteDetail() {
     if (!window.confirm('삭제하시겠습니까?')) return false;
     removeItem.mutate({ id }, { onSuccess: () => navigate('/routes') });
   };
+
   return (
     <>
       {isLoading && <p>Loading...</p>}
       {error && <p>Error</p>}
       {route && (
-        <div className='flex flex-col p-2'>
+        <div className='flex flex-col'>
           {route.user_id === uid && (
-            <div className='flex justify-end font-semibold'>
+            <div className='flex justify-end font-semibold pt-2'>
               <Button text={'수정'} onClick={handleUpdate} />
               <Button text={'삭제'} onClick={handleDelete} />
             </div>
           )}
-          <h1 className='text-2xl'>{route.title}</h1>
-          <span className='whitespace-pre'>{route.description}</span>
-          <Citys route={route} />
+          <div className='p-2'>
+            <h1 className='text-2xl'>{route.title}</h1>
+            <hr />
+            <span className='whitespace-pre '>{route.description}</span>
+            <div className='flex items-center justify-evenly my-2'>
+              <div>
+                <span className='text-brand font-bold'>국가: </span>
+                {route.country}
+              </div>
+              <div>
+                <span className='text-brand font-bold'>주요 지역: </span>
+                {route.region}
+              </div>
+              <div>
+                <span className='text-brand font-bold'>시기: </span>
+                {route.startMonth} ~ {route.endMonth}월
+              </div>
+            </div>
+            <hr />
+            <Citys route={route} />
+          </div>
         </div>
       )}
     </>

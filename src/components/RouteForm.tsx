@@ -10,8 +10,8 @@ type RouteType = {
   major_chk?: boolean;
 };
 
-const regions = ['공통', '유럽', '카리브해'];
-const countries = ['공통', '오스만'];
+const regions = ['공통', '유럽', '카리브해', '서아프리카', '동아프리카', '아랍', '서인도', '동인도', '서남아', '동남아', '동아시아', '기타'];
+const countries = ['공통', '포트투갈', '에스파냐', '잉글랜드', '네덜란드', '오스만', '명', '조선', '일본'];
 const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 export default function RouteForm() {
@@ -39,7 +39,6 @@ export default function RouteForm() {
       setRoute(state.route);
       setRegion(state.route.region);
       setStartMonth(state.route.startMonth);
-      setEndMonth(state.route.endMonth);
       setEndMonth(state.route.endMonth);
     }
   }, [state]);
@@ -84,7 +83,7 @@ export default function RouteForm() {
         <input className='w-11/12' name='major_goods' value={route.major_goods || ''} placeholder='주요교역품' onChange={handleChange} />
         <input className='w-4 h-4 mx-3' name='major_chk' type='checkbox' checked={route.major_chk || false} onChange={handleChange} />
       </div>
-      <div className='flex  items-center'>
+      <div className='flex items-center'>
         <label className='text-brand font-bold' htmlFor='select'>
           국가:
         </label>

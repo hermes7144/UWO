@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Route } from 'react-router-dom';
 import { withAllContexts, withRouter } from '../../tests/utils';
@@ -18,9 +18,6 @@ describe('RouteForm', () => {
   });
 
   it('submit route', async () => {
-    // const handleSubmit = jest.fn();
-    // handleSubmit.mockImplementation(() => true);
-
     renderRouteForm();
 
     const searchKeyword = '제목입니다';
@@ -34,10 +31,6 @@ describe('RouteForm', () => {
 
     const submit = screen.getByRole('button');
     await userEvent.click(submit);
-
-    // await waitFor(() => {
-    //   expect(screen.getByText('성공적으로 경로가 추가되었습니다.')).toBeInTheDocument();
-    // });
   });
 
   function renderRouteForm() {

@@ -3,10 +3,10 @@
 exports[`Router Detail renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="flex flex-col p-2"
+    class="flex flex-col"
   >
     <div
-      class="flex justify-end font-semibold"
+      class="flex justify-end font-semibold pt-2"
     >
       <button
         class="bg-brand text-white
@@ -21,17 +21,49 @@ exports[`Router Detail renders correctly 1`] = `
         삭제
       </button>
     </div>
-    <h1
-      class="text-2xl"
+    <div
+      class="p-2"
     >
-      title
-    </h1>
-    <span
-      class="whitespace-pre"
-    >
-      description
-    </span>
-    <div />
+      <h1
+        class="text-2xl"
+      >
+        title
+      </h1>
+      <hr />
+      <span
+        class="whitespace-pre "
+      >
+        description
+      </span>
+      <div
+        class="flex items-center justify-evenly my-2"
+      >
+        <div>
+          <span
+            class="text-brand font-bold"
+          >
+            국가: 
+          </span>
+        </div>
+        <div>
+          <span
+            class="text-brand font-bold"
+          >
+            주요 지역: 
+          </span>
+        </div>
+        <div>
+          <span
+            class="text-brand font-bold"
+          >
+            시기: 
+          </span>
+           ~ 월
+        </div>
+      </div>
+      <hr />
+      <div />
+    </div>
   </div>
 </DocumentFragment>
 `;

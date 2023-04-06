@@ -16,9 +16,8 @@ export default function Map() {
   } = useRoute(null);
 
   useEffect(() => {
-    route && setCitys(route.citys);
-
-    markers && route?.citys.length > 0 ? setCoordinates(markers[route.citys[0] - 1].city_coordinates) : setCoordinates([5, 42]);
+    setCitys(route?.citys);
+    markers && route?.citys?.length > 0 ? setCoordinates(markers[route.citys[0] - 1].city_coordinates) : setCoordinates([5, 42]);
     return () => {
       setCoordinates(null);
     };

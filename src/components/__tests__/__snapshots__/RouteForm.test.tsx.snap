@@ -34,7 +34,7 @@ exports[`RouteForm renders correctly 1`] = `
       />
     </div>
     <div
-      class="flex  items-center"
+      class="flex items-center"
     >
       <label
         class="text-brand font-bold"
@@ -49,7 +49,28 @@ exports[`RouteForm renders correctly 1`] = `
           공통
         </option>
         <option>
+          포트투갈
+        </option>
+        <option>
+          에스파냐
+        </option>
+        <option>
+          잉글랜드
+        </option>
+        <option>
+          네덜란드
+        </option>
+        <option>
           오스만
+        </option>
+        <option>
+          명
+        </option>
+        <option>
+          조선
+        </option>
+        <option>
+          일본
         </option>
       </select>
       <label
@@ -69,6 +90,33 @@ exports[`RouteForm renders correctly 1`] = `
         </option>
         <option>
           카리브해
+        </option>
+        <option>
+          서아프리카
+        </option>
+        <option>
+          동아프리카
+        </option>
+        <option>
+          아랍
+        </option>
+        <option>
+          서인도
+        </option>
+        <option>
+          동인도
+        </option>
+        <option>
+          서남아
+        </option>
+        <option>
+          동남아
+        </option>
+        <option>
+          동아시아
+        </option>
+        <option>
+          기타
         </option>
       </select>
       <label

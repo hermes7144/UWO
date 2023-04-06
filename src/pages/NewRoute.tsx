@@ -43,7 +43,6 @@ export default function NewRoute() {
       <div className='basis-2/6 flex flex-col p-2'>
         <div className='flex justify-end'>{route && route.user_id === uid && <Button text={'삭제'} onClick={handleDeleteRoute} />}</div>
         <RouteForm />
-
         <Citys route={route} />
       </div>
     </div>
