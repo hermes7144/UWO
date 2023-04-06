@@ -9,9 +9,8 @@ type RouteType = {
   major_goods?: string;
   major_chk?: boolean;
 };
-
-const regions = ['공통', '동지중해', '서지중해', '카리브해', '서아프리카', '동아프리카', '아랍', '서인도', '동인도', '서남아', '동남아', '동아시아', '기타'];
 const countries = ['공통', '포트투갈', '에스파냐', '잉글랜드', '네덜란드', '오스만', '명', '조선', '일본'];
+const regions = ['공통', '동지중해', '서지중해', '북해', '카리브해', '서아프리카', '동아프리카', '아랍', '서인도', '동인도', '서남아', '동남아', '동아시아', '기타'];
 const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 export default function RouteForm() {
@@ -37,6 +36,7 @@ export default function RouteForm() {
   useEffect(() => {
     if (state) {
       setRoute(state.route);
+      setCountry(state.route.country);
       setRegion(state.route.region);
       setStartMonth(state.route.startMonth);
       setEndMonth(state.route.endMonth);
