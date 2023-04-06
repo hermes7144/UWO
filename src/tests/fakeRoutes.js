@@ -7,14 +7,14 @@ export const fakeRoute =
     41,
     40
   ],
-  "createdAt": 1679876252338,
+  "createdAt": new Date(),
   "description": "description",
   "id": "891ebef9-552b-433b-8fc5-bb4280905053",
   "major_goods": [
     ""
   ],
   "title": "title",
-  "updatedAt": 1679916534911,
+  "updatedAt": new Date(),
   "user_id": "uid"
 }
 
@@ -22,7 +22,7 @@ export const fakeRoutes = [{
   "citys": [
     0, 1
   ],
-  "createdAt": 1679876252338,
+  "createdAt": new Date(),
   "description": "description",
   "id": "1",
   "major_goods": [
@@ -35,7 +35,7 @@ export const fakeRoutes = [{
   "citys": [
     0, 1
   ],
-  "createdAt": 1679876252338,
+  "createdAt": new Date(),
   "description": "description",
   "id": "2",
   "major_goods": [

@@ -21,7 +21,7 @@ exports[`RouteCard renders correctly 1`] = `
         title
       </span>
       <span>
-        4 days ago
+        just now
       </span>
     </div>
   </li>

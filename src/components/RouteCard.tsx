@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { formatAgo } from '../utils/date';
+import { formatDate } from '../utils/date';
 
 type RouteType = {
   route: {
@@ -32,7 +32,7 @@ export default function RouteCard({ route }: RouteType) {
           <span className='pl-3'>{route.startMonth}</span>~<span>{route.endMonth}</span>
         </div>
         <span>{route.title}</span>
-        <span>{formatAgo(route.createdAt)}</span>
+        <span>{formatDate(route.createdAt)}</span>
       </div>
     </li>
   );

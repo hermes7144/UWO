@@ -5,9 +5,9 @@ import { useUWORouteContext } from '../context/UWORouteContext';
 const geoUrl = process.env.PUBLIC_URL + '/maps/land-50m.json';
 
 export default function Map() {
-  const { useRoute } = useRouteHooksContext();
-
   const { citys, setCitys, coordinates, setCoordinates, editable } = useUWORouteContext();
+
+  const { useRoute } = useRouteHooksContext();
   const {
     routeQuery: { data: route },
   } = useRoute();
@@ -18,7 +18,7 @@ export default function Map() {
   useEffect(() => {
     route && setCitys(route.citys);
 
-    markers && route && route.citys && route.citys.length > 0 ? setCoordinates(markers[route.citys[0] - 1].city_coordinates) : setCoordinates([15, 42]);
+    markers && route?.citys.length > 0 ? setCoordinates(markers[route.citys[0] - 1].city_coordinates) : setCoordinates([5, 42]);
     return () => {
       setCoordinates(null);
     };
@@ -38,8 +38,8 @@ export default function Map() {
     <>
       {isLoading && <p>Loading...</p>}
       {coordinates && markers && (
-        <ComposableMap projectionConfig={{ scale: 110 }} width={650} height={445} className='bg-blue-300'>
-          <ZoomableGroup center={coordinates} zoom={7}>
+        <ComposableMap projectionConfig={{ scale: 250 }} width={650} height={500} className='bg-blue-300'>
+          <ZoomableGroup center={coordinates} zoom={6}>
             <Geographies geography={geoUrl}>{({ geographies }) => geographies.map((geo) => <Geography key={geo.rsmKey} geography={geo} fill='#D0AE89' />)}</Geographies>
             {markers.map(({ city_id, city_nm, city_coordinates, markerOffset }) => (
               <Marker className={!editable ? '' : 'cursor-pointer'} key={city_id} coordinates={city_coordinates} onClick={() => editable && handleClick(city_id)}>

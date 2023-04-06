@@ -61,12 +61,12 @@ export default function Routes() {
           <tbody>
             {routes.map((route: RouteType) => (
               <tr key={route.id} className='border-b dark:border-neutral-500'>
-                <td className='whitespace-nowrap px-1 py-2'>{route.country}</td>
-                <td className='whitespace-nowrap px-1 py-2'>{route.region}</td>
-                <td className='whitespace-nowrap px-1 py-2'>
+                <td className='whitespace-nowrap px-1 py-1'>{route.country}</td>
+                <td className='whitespace-nowrap px-1 py-1'>{route.region}</td>
+                <td className='whitespace-nowrap px-1 py-1'>
                   {route.startMonth} ~ {route.endMonth}월
                 </td>
-                <td className=' overflow-hidden px-2 py-4 text-left text-ellipsis whitespace-nowrap' style={{ maxWidth: '250px' }}>
+                <td className=' overflow-hidden px-2 py-1 text-left text-ellipsis whitespace-nowrap' style={{ maxWidth: '250px' }}>
                   <span
                     className='cursor-pointer hover:underline'
                     onClick={() => {

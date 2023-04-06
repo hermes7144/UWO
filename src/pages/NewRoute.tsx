@@ -21,7 +21,7 @@ export default function NewRoute() {
   } = useRoute();
 
   useEffect(() => {
-    route && route.citys ? setCitys(route.citys) : setCitys([]);
+    route?.citys ? setCitys(route.citys) : setCitys([]);
     setEditable(true);
 
     return () => {
@@ -42,8 +42,9 @@ export default function NewRoute() {
       </div>
       <div className='basis-2/6 flex flex-col p-2'>
         <div className='flex justify-end'>{route && route.user_id === uid && <Button text={'삭제'} onClick={handleDeleteRoute} />}</div>
-        <Citys route={route} />
         <RouteForm />
+
+        <Citys route={route} />
       </div>
     </div>
   );
