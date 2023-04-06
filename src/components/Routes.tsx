@@ -31,14 +31,14 @@ export default function Routes({ country, region, month }: RoutesType) {
   const filteredRoutes =
     routes &&
     routes.filter((route) => {
-      const isCommonMonth = month === '공통';
+      const isCommonMonth = month === '전체';
       const isStartMonthBeforeEndMonth = Number(route.startMonth) < Number(route.endMonth);
       const isMonthInRange = isStartMonthBeforeEndMonth ? Number(month) >= Number(route.startMonth) && Number(month) <= Number(route.endMonth) : Number(month) >= Number(route.startMonth) || Number(month) <= Number(route.endMonth);
 
       const isMonthValid = isCommonMonth || isMonthInRange;
 
       const isCountryValid = country === '공통' || route.country === country;
-      const isRegionValid = region === '공통' || route.region === region;
+      const isRegionValid = region === '전체' || route.region === region;
 
       return isMonthValid && isCountryValid && isRegionValid;
     });

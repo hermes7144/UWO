@@ -1,4 +1,3 @@
-import React from 'react';
 import Button from '../components/ui/Button';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
@@ -37,7 +36,7 @@ export default function RouteDetail() {
             </div>
           )}
           <div className='p-2'>
-            <h1 className='text-2xl'>{route.title}</h1>
+            <h1 className='text-2xl py-2'>{route.title}</h1>
             <hr />
             <span className='whitespace-pre '>{route.description}</span>
             <div className='flex items-center justify-evenly my-2'>

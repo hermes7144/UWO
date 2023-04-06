@@ -4,9 +4,11 @@ import Button from '../components/ui/Button';
 import { useAuthContext } from '../context/AuthContext';
 import Routes from '../components/Routes';
 
-const regions = ['공통', '유럽', '카리브해', '서아프리카', '동아프리카', '아랍', '서인도', '동인도', '서남아', '동남아', '동아시아', '기타'];
 const countries = ['공통', '포트투갈', '에스파냐', '잉글랜드', '네덜란드', '오스만', '명', '조선', '일본'];
-const months = ['공통', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+const regions = ['전체', '유럽', '카리브해', '서아프리카', '동아프리카', '아랍', '서인도', '동인도', '서남아', '동남아', '동아시아', '기타'];
+
+const months = ['전체', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 export default function AllRoutes() {
   const { user } = useAuthContext();
