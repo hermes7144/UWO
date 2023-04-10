@@ -86,7 +86,13 @@ exports[`RouteForm renders correctly 1`] = `
           공통
         </option>
         <option>
-          유럽
+          동지중해
+        </option>
+        <option>
+          서지중해
+        </option>
+        <option>
+          북해
         </option>
         <option>
           카리브해
