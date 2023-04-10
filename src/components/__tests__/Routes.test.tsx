@@ -19,17 +19,6 @@ describe('Routes', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  // it('renders routes correctly', async () => {
-  //   fakeUseRoute.mockImplementation(() => {
-  //     return { routesQuery: { data: fakeRoutes } };
-  //   });
-  //   renderRoutes();
-
-  //   await waitFor(() => {
-  //     expect(screen.getAllByRole('table').length).toHaveLength(fakeRoutes.length);
-  //   });
-  // });
-
   it('renders loading', () => {
     fakeUseRoute.mockImplementation(() => {
       return { routesQuery: { isLoading: true, data: fakeRoutes } };
@@ -51,6 +40,6 @@ describe('Routes', () => {
   });
 
   function renderRoutes() {
-    return render(withAllContexts(withRouter(<Route path='/' element={<Routes />} />), fakeUseRoute));
+    return render(withAllContexts(withRouter(<Route path='/' element={<Routes country={'오스만'} region={'카리브해'} month={2} />} />), fakeUseRoute));
   }
 });

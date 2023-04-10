@@ -44,6 +44,7 @@ exports[`Router Detail renders correctly 1`] = `
           >
             국가: 
           </span>
+          오스만
         </div>
         <div>
           <span
@@ -51,6 +52,7 @@ exports[`Router Detail renders correctly 1`] = `
           >
             주요 지역: 
           </span>
+          카리브해
         </div>
         <div>
           <span
@@ -58,7 +60,7 @@ exports[`Router Detail renders correctly 1`] = `
           >
             시기: 
           </span>
-           ~ 월
+          6 ~ 3월
         </div>
       </div>
       <hr />

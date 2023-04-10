@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AllRoutes renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="p-2"
+  >
+    <div>
+      <div
+        class="flex flex-col lg:flex-row items-center justify-center p-2"
+      >
+        <label
+          class="text-brand font-bold block min-w-fit"
+          for="country"
+        >
+          국가:
+        </label>
+        <select
+          class="p-1 m-1 w-full max-w-xs border-2 outline-none mr-5"
+          id="country"
+        >
+          <option>
+            공통
+          </option>
+          <option>
+            포트투갈
+          </option>
+          <option>
+            에스파냐
+          </option>
+          <option>
+            잉글랜드
+          </option>
+          <option>
+            네덜란드
+          </option>
+          <option>
+            오스만
+          </option>
+          <option>
+            명
+          </option>
+          <option>
+            조선
+          </option>
+          <option>
+            일본
+          </option>
+        </select>
+        <label
+          class="text-brand font-bold block min-w-fit"
+          for="region"
+        >
+          주요 지역:
+        </label>
+        <select
+          class="p-1 m-1 w-full max-w-xs border-2 outline-none mr-5"
+          id="region"
+        >
+          <option>
+            전체
+          </option>
+          <option>
+            동지중해
+          </option>
+          <option>
+            서지중해
+          </option>
+          <option>
+            북해
+          </option>
+          <option>
+            카리브해
+          </option>
+          <option>
+            서아프리카
+          </option>
+          <option>
+            동아프리카
+          </option>
+          <option>
+            아랍
+          </option>
+          <option>
+            서인도
+          </option>
+          <option>
+            동인도
+          </option>
+          <option>
+            서남아
+          </option>
+          <option>
+            동남아
+          </option>
+          <option>
+            동아시아
+          </option>
+          <option>
+            기타
+          </option>
+        </select>
+        <label
+          class="text-brand font-bold block min-w-fit"
+          for="month"
+        >
+          월:
+        </label>
+        <select
+          class="p-1 m-1 w-full max-w-xs border-2 outline-none"
+          id="month"
+        >
+          <option>
+            전체
+          </option>
+          <option>
+            1
+          </option>
+          <option>
+            2
+          </option>
+          <option>
+            3
+          </option>
+          <option>
+            4
+          </option>
+          <option>
+            5
+          </option>
+          <option>
+            6
+          </option>
+          <option>
+            7
+          </option>
+          <option>
+            8
+          </option>
+          <option>
+            9
+          </option>
+          <option>
+            10
+          </option>
+          <option>
+            11
+          </option>
+          <option>
+            12
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

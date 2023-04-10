@@ -67,7 +67,47 @@ exports[`Routes renders correctly 1`] = `
         </th>
       </tr>
     </thead>
-    <tbody />
+    <tbody>
+      <tr
+        class="border-b dark:border-neutral-500"
+      >
+        <td
+          class="whitespace-nowrap px-1 py-1"
+        >
+          오스만
+        </td>
+        <td
+          class="whitespace-nowrap px-1 py-1"
+        >
+          카리브해
+        </td>
+        <td
+          class="whitespace-nowrap px-1 py-1"
+        >
+          6 ~ 3월
+        </td>
+        <td
+          class=" overflow-hidden px-2 py-1 text-left text-ellipsis whitespace-nowrap"
+          style="max-width: 250px;"
+        >
+          <span
+            class="cursor-pointer hover:underline"
+          >
+            title1
+          </span>
+        </td>
+        <td
+          class="whitespace-nowrap px-2 py-2"
+        >
+          23/04/10
+        </td>
+        <td
+          class="whitespace-nowrap  px-2 py-2"
+        >
+          0
+        </td>
+      </tr>
+    </tbody>
   </table>
 </DocumentFragment>
 `;

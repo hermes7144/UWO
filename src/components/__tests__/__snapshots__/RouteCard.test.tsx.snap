@@ -9,13 +9,21 @@ exports[`RouteCard renders correctly 1`] = `
       class="px-1 text-xl overflow-hidden overflow-ellipsis whitespace-nowrap flex justify-between mx-2"
     >
       <div>
-        <span />
-        <span />
+        <span>
+          오스만
+        </span>
+        <span>
+          카리브해
+        </span>
         <span
           class="pl-3"
-        />
+        >
+          6
+        </span>
         ~
-        <span />
+        <span>
+          3
+        </span>
       </div>
       <span>
         title
