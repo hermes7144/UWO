@@ -56,7 +56,8 @@ export default function City({ route, index, city }: CityType) {
             </th>
             <th rowSpan={2}>
               <div className='flex flex-col justify-center items-center w-24'>
-                <button onClick={() => handleClick(city.city_coordinates)}>{city.city_nm}</button>[{city.city_coordinates[0]}/{city.city_coordinates[1]}]{editable && <BsFillTrashFill className='cursor-pointer opacity-50 hover:opacity-100' onClick={() => handleDelete(index)} />}
+                <button onClick={() => handleClick(city.city_coordinates)}>{city.city_nm}</button>
+                {editable && <BsFillTrashFill className='cursor-pointer opacity-50 hover:opacity-100' onClick={() => handleDelete(index)} />}
               </div>
             </th>
             {goods &&

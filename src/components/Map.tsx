@@ -37,7 +37,7 @@ export default function Map() {
     <>
       {isLoading && <p>Loading...</p>}
       {coordinates && markers && (
-        <ComposableMap projectionConfig={{ scale: 250 }} width={650} height={500} className='bg-blue-300'>
+        <ComposableMap projectionConfig={{ scale: 400 }} width={650} height={500} className='bg-blue-300'>
           <ZoomableGroup center={coordinates} zoom={6}>
             <Geographies geography={geoUrl}>{({ geographies }) => geographies.map((geo) => <Geography key={geo.rsmKey} geography={geo} fill='#D0AE89' />)}</Geographies>
             {markers.map(({ city_id, city_nm, city_coordinates, markerOffset }) => (

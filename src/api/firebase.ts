@@ -55,16 +55,7 @@ export async function getGoods(city) {
   return get(query(ref(database, 'goods'), orderByChild('city_id'), equalTo(city))).then((snapshot) => (snapshot.exists() ? Object.values(snapshot.val()) : []));
 }
 
-type RouteType = {
-  route: {
-    id: string;
-    title: string;
-    description?: string;
-  };
-  citys: number[];
-};
-
-export async function getRoutes(): Promise<object[]> {
+export async function getRoutes() {
   return get(query(ref(database, 'routes'), orderByChild('createdAt'))).then((snapshot) => {
     const routes = [];
 
@@ -95,21 +86,20 @@ export async function addOrUpdateRoute(
   route: {
     id?: string;
     major_goods?: string;
-  },
-  country: string,
-  region: string,
-  startMonth: number,
-  endMonth: number,
-  citys?: number[]
-): Promise<RouteType> {
+    major_chk: boolean;
+    country: string;
+    region: string;
+    startMonth: number;
+    endMonth: number;
+    citys?: number[];
+  }
+) {
   const id = route.id ? route.id : uuid();
 
-  console.log(route);
+  const date = route.id == null ? { createdAt: serverTimestamp() } : { updatedAt: serverTimestamp() };
 
-  const time = route.id == null ? { createdAt: serverTimestamp() } : { updatedAt: serverTimestamp() };
-
-  set(ref(database, `routes/${id}`), { ...route, ...time, user_id, id, country, region, startMonth, endMonth });
-  set(ref(database, `routes/${id}/citys`), citys);
+  set(ref(database, `routes/${id}`), { ...route, ...date, user_id, id });
+  set(ref(database, `routes/${id}/citys`), route.citys);
 
   set(
     ref(database, `routes/${id}/major_goods`),

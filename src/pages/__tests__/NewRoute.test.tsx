@@ -3,9 +3,6 @@ import { withAllContexts, withRouter } from '../../tests/utils';
 import { Route } from 'react-router-dom';
 import NewRoute from '../NewRoute';
 import { fakeRoute } from '../../tests/fakeRoutes';
-import Map from '../../components/Map';
-import Citys from '../../components/Citys';
-import RouteForm from '../../components/RouteForm';
 
 jest.mock('../../components/Map');
 jest.mock('../../components/Citys');

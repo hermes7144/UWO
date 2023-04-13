@@ -7,22 +7,22 @@ exports[`Routes renders correctly 1`] = `
   >
     <colgroup>
       <col
-        width="8%"
+        class="sm:w-1/12"
       />
       <col
-        width="8%"
+        class="sm:w-1/12"
       />
       <col
-        width="8%"
+        class="sm:w-1/12"
       />
       <col
-        width="40%"
+        class="sm:w-7/12"
       />
       <col
-        width="10%"
+        class="sm:w-1/12"
       />
       <col
-        width="10%"
+        class="sm:w-1/12"
       />
     </colgroup>
     <thead
@@ -72,22 +72,22 @@ exports[`Routes renders correctly 1`] = `
         class="border-b dark:border-neutral-500"
       >
         <td
-          class="whitespace-nowrap px-1 py-1"
+          class="px-1 py-1"
         >
           오스만
         </td>
         <td
-          class="whitespace-nowrap px-1 py-1"
+          class="px-1 py-1"
         >
           카리브해
         </td>
         <td
-          class="whitespace-nowrap px-1 py-1"
+          class="px-1 py-1"
         >
           6 ~ 3월
         </td>
         <td
-          class=" overflow-hidden px-2 py-1 text-left text-ellipsis whitespace-nowrap"
+          class="overflow-hidden px-2 py-1 text-left text-ellipsis whitespace-nowrap"
           style="max-width: 250px;"
         >
           <span
@@ -97,12 +97,12 @@ exports[`Routes renders correctly 1`] = `
           </span>
         </td>
         <td
-          class="whitespace-nowrap px-2 py-2"
+          class="px-2 py-2"
         >
-          23/04/10
+          23/04/13
         </td>
         <td
-          class="whitespace-nowrap  px-2 py-2"
+          class="px-2 py-2"
         >
           0
         </td>

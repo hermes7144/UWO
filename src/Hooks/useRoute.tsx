@@ -5,20 +5,16 @@ import { addOrUpdateRoute, getRoutes, getRoute, removeRoute } from '../api/fireb
 import { useAuthContext } from '../context/AuthContext';
 
 type RouteType = {
-  route: {
-    id: string;
-    title: string;
-    description?: string;
-  };
-  country?: string;
-  region?: string;
-  startMonth?: number;
-  endMonth?: number;
-  citys?: number[];
-};
-
-type RemoveType = {
   id: string;
+  title: string;
+  description?: string;
+  country: string;
+  region: string;
+  startMonth: number;
+  endMonth: number;
+  citys?: number[];
+  major_chk: boolean;
+  major_goods?: string;
 };
 
 export default function useRoute(city_id: number) {
@@ -33,14 +29,14 @@ export default function useRoute(city_id: number) {
   const routesQuery = useQuery(['routes'], getRoutes, { staleTime: 1000 * 60 });
   const routeQuery = useQuery(['route', id], () => getRoute(id), { enabled: !!id });
 
-  const addOrUpdateItem: UseMutationResult<RouteType> = useMutation(({ route, country, region, startMonth, endMonth, citys }: RouteType) => addOrUpdateRoute(uid, route, country, region, startMonth, endMonth, citys), {
+  const addOrUpdateItem: UseMutationResult<RouteType> = useMutation((route: RouteType) => addOrUpdateRoute(uid, route), {
     onSuccess: () => {
       queryClient.invalidateQueries(['routes']);
       queryClient.invalidateQueries(['route', id]);
     },
   });
 
-  const removeItem: UseMutationResult<RemoveType> = useMutation(({ id }: RemoveType) => removeRoute(id), {
+  const removeItem: UseMutationResult<string> = useMutation((id: string) => removeRoute(id), {
     onSuccess: () => {
       queryClient.invalidateQueries(['routes']);
     },

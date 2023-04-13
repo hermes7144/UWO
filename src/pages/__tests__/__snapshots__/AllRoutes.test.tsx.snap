@@ -11,13 +11,12 @@ exports[`AllRoutes renders correctly 1`] = `
       >
         <label
           class="text-brand font-bold block min-w-fit"
-          for="country"
         >
           국가:
         </label>
         <select
           class="p-1 m-1 w-full max-w-xs border-2 outline-none mr-5"
-          id="country"
+          name="country"
         >
           <option>
             공통
@@ -49,13 +48,12 @@ exports[`AllRoutes renders correctly 1`] = `
         </select>
         <label
           class="text-brand font-bold block min-w-fit"
-          for="region"
         >
           주요 지역:
         </label>
         <select
           class="p-1 m-1 w-full max-w-xs border-2 outline-none mr-5"
-          id="region"
+          name="region"
         >
           <option>
             전체
@@ -102,13 +100,12 @@ exports[`AllRoutes renders correctly 1`] = `
         </select>
         <label
           class="text-brand font-bold block min-w-fit"
-          for="month"
         >
           월:
         </label>
         <select
           class="p-1 m-1 w-full max-w-xs border-2 outline-none"
-          id="month"
+          name="month"
         >
           <option>
             전체

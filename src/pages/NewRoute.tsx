@@ -24,15 +24,13 @@ export default function NewRoute() {
     route?.citys ? setCitys(route.citys) : setCitys([]);
     setEditable(true);
 
-    return () => {
-      setEditable(false);
-    };
+    return () => setEditable(false);
   }, [route, setCitys, setEditable]);
 
   const handleDeleteRoute = () => {
     if (!window.confirm('삭제하시겠습니까?')) return false;
     const id = route.id;
-    removeItem.mutate({ id }, { onSuccess: () => navigate('/routes') });
+    removeItem.mutate(id, { onSuccess: () => navigate('/routes') });
   };
 
   return (

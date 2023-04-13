@@ -40,6 +40,12 @@ describe('Routes', () => {
   });
 
   function renderRoutes() {
-    return render(withAllContexts(withRouter(<Route path='/' element={<Routes country={'오스만'} region={'카리브해'} month={2} />} />), fakeUseRoute));
+    const filter = {
+      country: '오스만',
+      region: '카리브해',
+      month: 2,
+    };
+
+    return render(withAllContexts(withRouter(<Route path='/' element={<Routes filter={filter} />} />), fakeUseRoute));
   }
 });
