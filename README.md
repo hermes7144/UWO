@@ -1,11 +1,13 @@
 https://uwotool.netlify.app/
 
 <h1>사용 기술</h1>
+
 ![image](https://user-images.githubusercontent.com/46180611/232435613-92a98f04-105a-47eb-9c27-5a36405d9dcc.png)
 
 
 <h1>사용 설명서</h1>
 첫 화면에서 무역 루트를 클릭하면 작성된 무역 루트를 볼 수 있습니다. 
+
 ![image](https://user-images.githubusercontent.com/46180611/232382439-2047ac3a-40c0-4466-9a0e-c983eeaed7be.png)
 
 
