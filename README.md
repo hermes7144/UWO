@@ -1,4 +1,4 @@
-웹페이지 https://uwotool.netlify.app/
+https://uwotool.netlify.app/
 
 첫 화면에서 무역 루트를 클릭하면 작성된 무역 루트를 볼 수 있습니다. 
 ![image](https://user-images.githubusercontent.com/46180611/232382439-2047ac3a-40c0-4466-9a0e-c983eeaed7be.png)
