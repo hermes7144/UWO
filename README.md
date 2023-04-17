@@ -22,3 +22,12 @@
 
 저장된 경로는 무역 루트 리스트에서 확인할 수 있으며 자신이 작성한 무역 루트라면 수정과 삭제를 할 수 있습니다.
  ![image](https://user-images.githubusercontent.com/46180611/232382670-682febb6-614e-4bfe-9605-f291ea79f3e6.png)
+
+주요 품목을 선택하는 기능이 있으면 좀 더 가독성이 좋을거 같아서 기능을 추가합니다.
+
+주요 품목은 새 교역 루트를 추가하거나 수정할 때 기입 가능하며, 체크로 사용 유무 확인을 합니다. 주요 품목은 쉼표(,)로 구분합니다.
+![image](https://user-images.githubusercontent.com/46180611/232387996-9bf38403-5420-4317-862f-021ef4d774ef.png)
+
+다시 무역 루트를 확인하면 주요 무역품만 보이는 걸 확인할 수 있습니다.
+
+![image](https://user-images.githubusercontent.com/46180611/232388052-d849ef99-4fee-4f8d-ad14-faf2c606df36.png)
