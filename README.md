@@ -17,9 +17,9 @@ https://uwotool.netlify.app/
 
 현재는 구글 로그인만 지원이 됩니다. 로그인 하시게되면 신규 경로를 저장할 수 있는 버튼이 보입니다.
 
-![image](https://user-images.githubusercontent.com/46180611/232382540-e2eb2ca9-9092-4d6c-a7bd-370b117dd4aa.png)
+![image](https://user-images.githubusercontent.com/46180611/232748757-24a9686f-2efd-490d-8d29-e22c654c212c.png)
 
-버튼을 클릭하게 되면 새 무역 경로를 생성할 수 있는 화면으로 전환됩니다.
+New 버튼을 클릭하게 되면 새 무역 경로를 생성할 수 있는 화면으로 전환됩니다.
 
 
 도시를 클릭하게 되면 경로에 추가되며, 마지막에 선택한 도시를 다시 선택하거나 목록의 휴지통을 클릭하면 경로에서 제거됩니다. Save 버튼을 클릭하면 경로가 저장됩니다.
