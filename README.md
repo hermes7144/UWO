@@ -22,12 +22,12 @@ https://uwotool.netlify.app/
 New 버튼을 클릭하게 되면 새 무역 경로를 생성할 수 있는 화면으로 전환됩니다.
 
 
-도시를 클릭하게 되면 경로에 추가되며, 마지막에 선택한 도시를 다시 선택하거나 목록의 휴지통을 클릭하면 경로에서 제거됩니다. Save 버튼을 클릭하면 경로가 저장됩니다.
+도시를 클릭하게 되면 경로에 추가됩니다. 마지막에 선택한 도시를 다시 선택하거나 목록의 휴지통을 클릭하면 경로에서 제거됩니다. Save 버튼을 클릭하면 경로가 저장됩니다.
 
-![image](https://user-images.githubusercontent.com/46180611/232382643-2da352cb-13af-4f53-b926-ba1196ec4de1.png)
+![image](https://user-images.githubusercontent.com/46180611/232749608-9548f6e6-bfc0-40a5-8265-677d5dfb0451.png)
 
 저장된 경로는 무역 루트 리스트에서 확인할 수 있으며 자신이 작성한 무역 루트라면 수정과 삭제를 할 수 있습니다.
- ![image](https://user-images.githubusercontent.com/46180611/232382670-682febb6-614e-4bfe-9605-f291ea79f3e6.png)
+![image](https://user-images.githubusercontent.com/46180611/232749899-aaa64076-51e1-4b2e-bbf2-cc4542272a4d.png)
 
 주요 품목을 선택하는 기능이 있으면 좀 더 가독성이 좋을거 같아서 기능을 추가합니다.
 
