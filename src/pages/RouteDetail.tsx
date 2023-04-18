@@ -19,7 +19,7 @@ export default function RouteDetail() {
   const handleUpdate = () => navigate(`/routes/update/${id}`, { state: { route } });
 
   const handleDelete = () => {
-    if (!window.confirm('삭제 하시겠습니까?')) return false;
+    if (!window.confirm('삭제  하시겠습니까?')) return false;
     removeItem.mutate({ id }, { onSuccess: () => navigate('/routes') });
   };
 
